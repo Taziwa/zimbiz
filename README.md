@@ -18,14 +18,12 @@ This is a Zimbabwe Business Directory, ZimBiz visual frontend real Node/Express 
 - Real Leaflet/OpenStreetMap map pins
 - Graceful fallback to the original mock data when MongoDB is not connected
 
-## Recommended production architecture
+## Production architecture
 
 - Frontend + API: Render Web Service (free tier for a portfolio/prototype)
 - Database: MongoDB Atlas Free cluster
 - Images: Cloudinary Free for uploaded business photos later
 - Git: GitHub
-
-Render's free web service can host Node/Express but spins down after 15 minutes of no inbound traffic and can take about a minute to wake. Its local filesystem is ephemeral, so do not store uploaded images or important data there. Keep business data in MongoDB and media in Cloudinary.
 
 
 ## Important next production upgrades
