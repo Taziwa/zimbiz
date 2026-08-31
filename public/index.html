@@ -1,0 +1,2453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ZimBiz — Find the Right Business in Zimbabwe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════════════ */
+:root {
+  --aubergine:    #2D1B69;
+  --aubergine-2:  #3D2880;
+  --aubergine-3:  #200F50;
+  --aubergine-s:  #EEE8FF;
+  --coral:        #FF4757;
+  --coral-dim:    #CC3444;
+  --coral-s:      #FFF0F2;
+  --emerald:      #00C896;
+  --emerald-dim:  #009970;
+  --emerald-s:    #E0FFF6;
+  --amber:        #FF9F43;
+  --amber-s:      #FFF5E8;
+  --blue:         #2F80ED;
+  --blue-s:       #EAF3FF;
+  --page:         #FFF8F0;
+  --card:         #FFFFFF;
+  --card-2:       #FDFBF8;
+  --ink:          #1A0F2E;
+  --ink-2:        #2D2245;
+  --ink-muted:    #6B5F82;
+  --ink-dim:      #B0A8C2;
+  --border:       rgba(45,27,105,.09);
+  --border-2:     rgba(45,27,105,.16);
+  --shadow-s:     0 2px 12px rgba(45,27,105,.08);
+  --shadow-m:     0 6px 28px rgba(45,27,105,.13);
+  --shadow-l:     0 14px 56px rgba(45,27,105,.18);
+  --fn-d:         'Bricolage Grotesque', system-ui, sans-serif;
+  --fn-b:         'Figtree', system-ui, sans-serif;
+  --fn-m:         'JetBrains Mono', monospace;
+  --r:            12px;
+  --rl:           18px;
+  --rx:           26px;
+}
+
+/* ═══════════════════════════════════════════════════
+   RESET
+═══════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--fn-b);
+  background:var(--page);
+  color:var(--ink);
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;border:none;background:none;font-family:inherit;color:inherit}
+input,select,textarea{font-family:inherit}
+
+/* ═══════════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════════ */
+.nav{
+  position:sticky;top:0;z-index:400;
+  background:rgba(255,248,240,.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border-2);
+}
+.nav-in{
+  max-width:1360px;margin:0 auto;
+  padding:0 28px;height:66px;
+  display:flex;align-items:center;gap:0;
+}
+.nav-brand{
+  display:flex;align-items:center;gap:10px;
+  margin-right:28px;flex-shrink:0;
+}
+.brand-mark{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,var(--aubergine),var(--aubergine-2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;box-shadow:0 4px 14px rgba(45,27,105,.3);
+}
+.brand-word{
+  font-family:var(--fn-d);font-size:21px;font-weight:800;
+  color:var(--ink);letter-spacing:-.04em;
+}
+.brand-word span{
+  background:linear-gradient(135deg,var(--coral),#FF8A65);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.nav-links{display:flex;list-style:none;margin-right:auto}
+.nav-links a{
+  padding:8px 13px;
+  font-size:14px;font-weight:500;
+  color:var(--ink-muted);transition:color .15s;
+  white-space:nowrap;
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--aubergine);font-weight:600}
+.nav-right{display:flex;align-items:center;gap:8px}
+.btn-signin{
+  padding:8px 16px;border-radius:8px;
+  font-size:13.5px;font-weight:600;
+  color:var(--ink-muted);border:1.5px solid var(--border-2);
+  transition:all .15s;
+}
+.btn-signin:hover{border-color:var(--aubergine);color:var(--aubergine)}
+.btn-list{
+  padding:9px 20px;border-radius:8px;
+  background:linear-gradient(135deg,var(--coral),#FF6B81);
+  color:#fff;font-weight:700;font-size:13.5px;
+  box-shadow:0 4px 16px rgba(255,71,87,.3);
+  transition:all .15s;white-space:nowrap;
+}
+.btn-list:hover{box-shadow:0 6px 24px rgba(255,71,87,.45);transform:translateY(-1px)}
+/* Mobile nav */
+.nav-mobile-toggle{
+  display:none;width:38px;height:38px;
+  border-radius:8px;background:var(--aubergine-s);
+  border:1px solid var(--border-2);
+  align-items:center;justify-content:center;font-size:20px;
+}
+
+/* ═══════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════ */
+.hero{
+  background:linear-gradient(160deg,var(--aubergine-3) 0%,var(--aubergine) 35%,#4A1F8A 65%,#2D1B69 100%);
+  padding:72px 28px 80px;
+  position:relative;overflow:hidden;
+}
+/* Animated mesh */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 40%,rgba(255,71,87,.18) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 70% at 10% 80%,rgba(0,200,150,.12) 0%,transparent 55%),
+    radial-gradient(ellipse 60% 40% at 50% 10%,rgba(255,255,255,.06) 0%,transparent 55%);
+  animation:heroambient 14s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes heroambient{
+  0%{opacity:.8;transform:scale(1)}
+  100%{opacity:1;transform:scale(1.08)}
+}
+/* Dot grid pattern */
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(rgba(255,255,255,.12) 1px,transparent 1px);
+  background-size:28px 28px;pointer-events:none;
+}
+.hero-in{
+  max-width:1360px;margin:0 auto;
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 420px;
+  gap:60px;align-items:center;
+}
+
+/* Headline */
+.hero-kicker{
+  font-family:var(--fn-m);font-size:11px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-kicker::before{content:'';width:18px;height:1.5px;background:var(--coral);display:block}
+.hero-h1{
+  font-family:var(--fn-d);
+  font-size:clamp(38px,5.2vw,66px);
+  font-weight:800;line-height:1.07;
+  letter-spacing:-.04em;
+  color:#fff;margin-bottom:16px;
+}
+.hero-h1 .hl-coral{
+  background:linear-gradient(135deg,#FF4757,#FF8A65);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{
+  font-size:17px;color:rgba(255,255,255,.62);
+  line-height:1.7;margin-bottom:36px;max-width:520px;
+}
+
+/* SEARCH BOX */
+.search-box{
+  background:#fff;
+  border-radius:var(--rx);
+  box-shadow:0 16px 64px rgba(0,0,0,.3);
+  padding:6px;
+  display:flex;gap:0;
+  max-width:640px;
+}
+.search-field{
+  flex:1;display:flex;align-items:center;gap:10px;
+  padding:12px 16px;
+  border-right:1.5px solid var(--border-2);
+  position:relative;
+}
+.search-field:last-of-type{border-right:none;flex:0 0 180px}
+.search-field-icon{font-size:18px;flex-shrink:0;opacity:.6}
+.search-field input{
+  border:none;outline:none;
+  font-family:var(--fn-b);font-size:15px;
+  color:var(--ink);background:transparent;width:100%;
+}
+.search-field input::placeholder{color:var(--ink-dim)}
+.search-btn{
+  background:linear-gradient(135deg,var(--coral),#FF6B81);
+  color:#fff;border-radius:20px;
+  padding:14px 28px;
+  font-family:var(--fn-d);font-weight:700;font-size:15px;
+  display:flex;align-items:center;gap:8px;
+  white-space:nowrap;flex-shrink:0;
+  box-shadow:0 4px 20px rgba(255,71,87,.4);
+  transition:all .15s;
+}
+.search-btn:hover{box-shadow:0 8px 28px rgba(255,71,87,.55);transform:translateY(-1px)}
+.search-tags{
+  display:flex;align-items:center;gap:8px;
+  margin-top:16px;flex-wrap:wrap;
+}
+.search-tag-lbl{font-size:12px;color:rgba(255,255,255,.4);font-weight:500}
+.stag{
+  font-size:12px;font-weight:500;
+  color:rgba(255,255,255,.62);
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  padding:4px 12px;border-radius:20px;
+  cursor:pointer;transition:all .15s;
+}
+.stag:hover{background:rgba(255,255,255,.16);color:#fff}
+
+/* Intent buttons */
+.intent-row{
+  display:flex;gap:8px;flex-wrap:wrap;margin-top:28px;
+}
+.intent-btn{
+  display:flex;align-items:center;gap:7px;
+  padding:9px 16px;border-radius:20px;
+  background:rgba(255,255,255,.08);
+  border:1.5px solid rgba(255,255,255,.14);
+  color:rgba(255,255,255,.75);
+  font-size:13.5px;font-weight:500;
+  cursor:pointer;transition:all .15s;
+}
+.intent-btn:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.28);color:#fff}
+.intent-btn.active{background:rgba(255,255,255,.18);border-color:var(--coral);color:#fff}
+
+/* Hero stats panel */
+.hero-stats{
+  background:rgba(255,255,255,.07);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--rx);
+  padding:28px;
+  display:flex;flex-direction:column;gap:20px;
+}
+.hs-title{
+  font-family:var(--fn-d);font-size:16px;font-weight:700;
+  color:#fff;letter-spacing:-.02em;margin-bottom:4px;
+}
+.hs-sub{font-size:13px;color:rgba(255,255,255,.5)}
+.hs-stats{display:flex;gap:0}
+.hs-stat{flex:1;text-align:center;padding:0 12px;border-right:1px solid rgba(255,255,255,.1)}
+.hs-stat:last-child{border-right:none}
+.hs-num{
+  font-family:var(--fn-d);font-size:26px;font-weight:800;
+  color:#fff;letter-spacing:-.04em;line-height:1;
+  background:linear-gradient(135deg,#fff,rgba(255,255,255,.7));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hs-lbl{font-size:10px;font-weight:600;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;margin-top:3px}
+
+/* Hero featured businesses preview */
+.hero-biz-preview{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.hbp-card{
+  background:rgba(255,255,255,.1);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;padding:12px 16px;
+  display:flex;align-items:center;gap:12px;
+  cursor:pointer;transition:all .18s;
+}
+.hbp-card:hover{background:rgba(255,255,255,.15);transform:translateX(4px)}
+.hbp-logo{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.hbp-info{flex:1;min-width:0}
+.hbp-name{font-family:var(--fn-d);font-size:14px;font-weight:700;color:#fff;line-height:1.2}
+.hbp-meta{font-size:11.5px;color:rgba(255,255,255,.5);margin-top:2px;display:flex;align-items:center;gap:6px}
+.hbp-rating{color:var(--amber);font-weight:600}
+.hbp-open{display:flex;align-items:center;gap:4px;color:var(--emerald);font-size:11px;font-weight:600}
+.hbp-open-dot{width:6px;height:6px;border-radius:50%;background:var(--emerald);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,200,150,.4)}50%{box-shadow:0 0 0 6px rgba(0,200,150,0)}}
+.hbp-wa{
+  width:32px;height:32px;border-radius:8px;
+  background:rgba(0,200,150,.2);border:1px solid rgba(0,200,150,.3);
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+  transition:all .15s;flex-shrink:0;
+}
+.hbp-card:hover .hbp-wa{background:rgba(0,200,150,.35)}
+
+/* ═══════════════════════════════════════════════════
+   SMART SEARCH BAR (full-width below hero)
+═══════════════════════════════════════════════════ */
+.smart-bar{
+  background:#fff;
+  border-bottom:1px solid var(--border-2);
+  padding:14px 28px;
+  position:sticky;top:66px;z-index:300;
+  box-shadow:var(--shadow-s);
+}
+.smart-bar-in{
+  max-width:1360px;margin:0 auto;
+  display:flex;align-items:center;gap:12px;
+  flex-wrap:wrap;
+}
+.smart-search{
+  flex:1;display:flex;align-items:center;gap:8px;
+  background:var(--page);border:1.5px solid var(--border-2);
+  border-radius:10px;padding:10px 16px;
+  min-width:240px;
+  transition:border-color .15s;
+}
+.smart-search:focus-within{border-color:var(--aubergine)}
+.smart-search input{
+  border:none;outline:none;background:transparent;
+  font-family:var(--fn-b);font-size:14.5px;color:var(--ink);flex:1;
+}
+.smart-search input::placeholder{color:var(--ink-dim)}
+.filter-chips{display:flex;gap:7px;flex-wrap:wrap;align-items:center}
+.fc{
+  padding:7px 13px;border-radius:20px;
+  font-size:12.5px;font-weight:600;
+  border:1.5px solid var(--border-2);color:var(--ink-muted);
+  cursor:pointer;transition:all .15s;white-space:nowrap;
+  background:#fff;
+}
+.fc:hover{border-color:var(--aubergine);color:var(--aubergine)}
+.fc.active{background:var(--aubergine);color:#fff;border-color:var(--aubergine)}
+.fc.emerald.active{background:var(--emerald);border-color:var(--emerald)}
+.view-toggle{
+  display:flex;background:var(--page);
+  border:1.5px solid var(--border-2);
+  border-radius:10px;overflow:hidden;flex-shrink:0;
+}
+.vt-btn{
+  padding:8px 14px;font-size:14px;
+  color:var(--ink-muted);transition:all .15s;display:flex;align-items:center;gap:5px;
+  font-size:13px;font-weight:500;
+}
+.vt-btn.active{background:var(--aubergine);color:#fff}
+
+/* ═══════════════════════════════════════════════════
+   PAGE STRUCTURE
+═══════════════════════════════════════════════════ */
+.pw{max-width:1360px;margin:0 auto;padding:0 28px}
+.section{padding:56px 0}
+.section-hd{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px;gap:16px;flex-wrap:wrap}
+.sh-left{display:flex;align-items:center;gap:12px}
+.sh-accent{width:4px;height:28px;border-radius:2px;flex-shrink:0}
+.sh-title{font-family:var(--fn-d);font-size:22px;font-weight:800;color:var(--ink);letter-spacing:-.03em}
+.sh-count{
+  font-family:var(--fn-m);font-size:10px;font-weight:600;
+  color:var(--ink-muted);background:var(--aubergine-s);
+  border:1px solid rgba(45,27,105,.15);
+  padding:3px 9px;border-radius:20px;letter-spacing:.04em;
+}
+.sh-see-all{
+  font-size:13.5px;font-weight:700;color:var(--aubergine);
+  display:flex;align-items:center;gap:4px;transition:color .15s;
+}
+.sh-see-all:hover{color:var(--coral)}
+
+/* ═══════════════════════════════════════════════════
+   CATEGORY GRID
+═══════════════════════════════════════════════════ */
+.cat-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:14px;
+}
+.cat-card{
+  border-radius:var(--rl);overflow:hidden;
+  position:relative;cursor:pointer;
+  height:130px;
+  box-shadow:var(--shadow-s);
+  transition:transform .2s,box-shadow .2s;
+}
+.cat-card:hover{transform:translateY(-4px) scale(1.02);box-shadow:var(--shadow-m)}
+.cat-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:52px}
+.cat-ov{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 20%,rgba(0,0,0,.62) 100%)}
+.cat-body{position:absolute;bottom:0;left:0;right:0;padding:12px 14px}
+.cat-name{font-family:var(--fn-d);font-size:13.5px;font-weight:700;color:#fff;letter-spacing:-.01em;line-height:1.2}
+.cat-count{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px}
+
+/* Sub-categories scroll */
+.cat-sub-row{
+  display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+  padding-bottom:4px;margin-top:16px;
+}
+.cat-sub-row::-webkit-scrollbar{display:none}
+.cat-sub{
+  flex-shrink:0;
+  display:flex;align-items:center;gap:6px;
+  padding:8px 16px;border-radius:20px;
+  background:#fff;border:1.5px solid var(--border-2);
+  font-size:13px;font-weight:600;color:var(--ink-muted);
+  cursor:pointer;transition:all .15s;white-space:nowrap;
+  box-shadow:var(--shadow-s);
+}
+.cat-sub:hover{border-color:var(--aubergine);color:var(--aubergine)}
+.cat-sub.active{background:var(--aubergine);color:#fff;border-color:var(--aubergine)}
+
+/* ═══════════════════════════════════════════════════
+   LOCATION EXPLORER
+═══════════════════════════════════════════════════ */
+.location-grid{
+  display:grid;grid-template-columns:repeat(7,1fr);
+  gap:10px;
+}
+.loc-card{
+  background:#fff;border:1.5px solid var(--border);
+  border-radius:var(--rl);padding:18px 12px;
+  text-align:center;cursor:pointer;
+  transition:all .18s;box-shadow:var(--shadow-s);
+}
+.loc-card:hover{border-color:var(--aubergine);transform:translateY(-3px);box-shadow:var(--shadow-m)}
+.loc-card.featured{background:var(--aubergine);border-color:var(--aubergine)}
+.loc-card.featured .loc-name,.loc-card.featured .loc-count{color:#fff}
+.loc-icon{font-size:26px;margin-bottom:8px}
+.loc-name{font-family:var(--fn-d);font-size:13px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.loc-count{font-size:11px;color:var(--ink-muted);margin-top:3px}
+
+/* ═══════════════════════════════════════════════════
+   BUSINESS CARD — The hero of the interface
+═══════════════════════════════════════════════════ */
+.biz-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.biz-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+
+.biz-card{
+  background:var(--card);
+  border:1.5px solid var(--border);
+  border-radius:var(--rx);
+  overflow:hidden;cursor:pointer;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  box-shadow:var(--shadow-s);
+  display:flex;flex-direction:column;
+  position:relative;
+}
+.biz-card:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--shadow-l);
+  border-color:var(--border-2);
+}
+/* Category signal stripe — the signature element */
+.biz-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+}
+.biz-thumb{
+  height:160px;position:relative;overflow:hidden;flex-shrink:0;
+}
+.biz-thumb-bg{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:64px;transition:transform .35s;
+}
+.biz-card:hover .biz-thumb-bg{transform:scale(1.06)}
+.biz-thumb-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.42) 100%);
+}
+.biz-logo{
+  position:absolute;bottom:-18px;left:16px;
+  width:44px;height:44px;border-radius:10px;
+  border:2.5px solid #fff;
+  background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+  box-shadow:var(--shadow-s);
+  transition:transform .2s;
+}
+.biz-card:hover .biz-logo{transform:scale(1.08)}
+.biz-save{
+  position:absolute;top:12px;right:12px;
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,.25);
+  backdrop-filter:blur(6px);
+  border:1px solid rgba(255,255,255,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;color:rgba(255,255,255,.85);
+  cursor:pointer;transition:all .15s;z-index:2;
+}
+.biz-save:hover{background:rgba(255,255,255,.45);color:var(--coral)}
+.biz-save.saved{color:var(--coral);background:rgba(255,71,87,.15)}
+.biz-open-badge{
+  position:absolute;top:12px;left:12px;z-index:2;
+  display:flex;align-items:center;gap:4px;
+  background:rgba(0,0,0,.6);backdrop-filter:blur(6px);
+  border-radius:20px;padding:4px 10px;
+  font-size:10.5px;font-weight:700;
+}
+.biz-open-badge.open{color:var(--emerald)}
+.biz-open-badge.closed{color:#FF6B81}
+.biz-od{width:5px;height:5px;border-radius:50%;background:currentColor}
+.biz-open-badge.open .biz-od{animation:pulse 2s ease-in-out infinite}
+
+.biz-body{padding:28px 18px 18px;flex:1;display:flex;flex-direction:column;gap:6px}
+.biz-top-row{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.biz-name{
+  font-family:var(--fn-d);font-size:16px;font-weight:800;
+  color:var(--ink);letter-spacing:-.025em;line-height:1.25;flex:1;
+}
+.biz-card:hover .biz-name{color:var(--aubergine)}
+.verified-badge{
+  flex-shrink:0;
+  display:flex;align-items:center;gap:3px;
+  font-family:var(--fn-m);font-size:9px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+  background:var(--blue-s);color:var(--blue);
+  border:1px solid rgba(47,128,237,.2);
+  padding:3px 7px;border-radius:4px;
+  white-space:nowrap;
+}
+.biz-cat{
+  font-size:12px;font-weight:600;color:var(--ink-muted);
+  display:flex;align-items:center;gap:5px;
+}
+.biz-cat-dot{width:6px;height:6px;border-radius:50%}
+.biz-rating{display:flex;align-items:center;gap:6px;margin:2px 0}
+.biz-stars{color:var(--amber);font-size:13px;letter-spacing:-1px}
+.biz-rating-num{font-weight:700;font-size:13.5px;color:var(--ink)}
+.biz-review-count{font-size:12px;color:var(--ink-muted)}
+.biz-loc{
+  font-size:12.5px;color:var(--ink-muted);
+  display:flex;align-items:center;gap:5px;
+}
+.biz-excerpt{
+  font-size:13px;color:var(--ink-muted);
+  line-height:1.55;margin-top:4px;flex:1;
+}
+.biz-price{
+  font-family:var(--fn-m);font-size:12px;font-weight:600;
+  color:var(--ink-muted);
+}
+.biz-footer{
+  display:flex;align-items:center;gap:8px;
+  padding-top:12px;margin-top:4px;
+  border-top:1px solid var(--border);
+  flex-wrap:wrap;
+}
+.btn-view{
+  flex:1;padding:9px 14px;border-radius:8px;
+  background:var(--aubergine);color:#fff;
+  font-family:var(--fn-d);font-size:13px;font-weight:700;
+  text-align:center;transition:all .15s;
+  min-width:80px;
+}
+.btn-view:hover{background:var(--aubergine-2)}
+.btn-wa{
+  padding:9px 14px;border-radius:8px;
+  background:var(--emerald-s);color:var(--emerald);
+  border:1.5px solid rgba(0,200,150,.25);
+  font-size:13px;font-weight:700;
+  display:flex;align-items:center;gap:6px;
+  transition:all .15s;white-space:nowrap;
+}
+.btn-wa:hover{background:var(--emerald);color:#fff;border-color:var(--emerald)}
+.btn-quote{
+  padding:9px 12px;border-radius:8px;
+  background:var(--coral-s);color:var(--coral);
+  border:1.5px solid rgba(255,71,87,.2);
+  font-size:12.5px;font-weight:700;
+  display:flex;align-items:center;gap:5px;
+  transition:all .15s;white-space:nowrap;
+}
+.btn-quote:hover{background:var(--coral);color:#fff;border-color:var(--coral)}
+
+/* Premium badge */
+.premium-badge{
+  position:absolute;top:0;right:0;
+  background:linear-gradient(135deg,var(--amber),#FF8A00);
+  color:#fff;
+  font-family:var(--fn-m);font-size:9px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 10px;border-radius:0 var(--rx) 0 8px;
+}
+
+/* ═══════════════════════════════════════════════════
+   FEATURED BUSINESS — WIDE CARD
+═══════════════════════════════════════════════════ */
+.featured-wide{
+  background:var(--card);
+  border:1.5px solid var(--border);
+  border-radius:var(--rx);
+  overflow:hidden;
+  display:grid;grid-template-columns:320px 1fr;
+  box-shadow:var(--shadow-m);
+  cursor:pointer;
+  transition:box-shadow .2s;
+  position:relative;
+}
+.featured-wide:hover{box-shadow:var(--shadow-l)}
+.featured-wide::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--amber),var(--coral))}
+.fw-visual{
+  position:relative;overflow:hidden;min-height:260px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:90px;
+}
+.fw-visual-bg{position:absolute;inset:0}
+.fw-ov{position:absolute;inset:0;background:linear-gradient(to right,transparent,var(--card))}
+.fw-body{padding:32px 36px;display:flex;flex-direction:column;justify-content:space-between}
+.fw-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--amber-s);color:var(--amber);
+  border:1px solid rgba(255,159,67,.25);
+  font-family:var(--fn-m);font-size:9.5px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 10px;border-radius:5px;margin-bottom:14px;width:fit-content;
+}
+.fw-name{
+  font-family:var(--fn-d);font-size:26px;font-weight:800;
+  color:var(--ink);letter-spacing:-.04em;margin-bottom:8px;
+}
+.fw-desc{font-size:14.5px;color:var(--ink-muted);line-height:1.65;margin-bottom:16px;max-width:440px}
+.fw-meta{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:20px}
+.fw-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ═══════════════════════════════════════════════════
+   MAP DISCOVERY CONCEPT
+═══════════════════════════════════════════════════ */
+.map-section{
+  background:var(--aubergine-3);
+  padding:56px 0;
+}
+.map-in{
+  max-width:1360px;margin:0 auto;padding:0 28px;
+  display:grid;grid-template-columns:360px 1fr;
+  gap:24px;align-items:stretch;
+}
+.map-left{display:flex;flex-direction:column;gap:14px}
+.map-hd{
+  font-family:var(--fn-d);font-size:22px;font-weight:800;
+  color:#fff;letter-spacing:-.03em;margin-bottom:4px;
+}
+.map-sub{font-size:14px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:10px}
+.map-biz-list{display:flex;flex-direction:column;gap:10px;max-height:400px;overflow-y:auto}
+.map-biz-list::-webkit-scrollbar{width:3px}
+.map-biz-list::-webkit-scrollbar-track{background:rgba(255,255,255,.05)}
+.map-biz-list::-webkit-scrollbar-thumb{background:var(--coral);border-radius:2px}
+.mbl-item{
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:14px 16px;
+  display:flex;align-items:center;gap:12px;
+  cursor:pointer;transition:all .18s;
+}
+.mbl-item:hover,.mbl-item.active{background:rgba(255,255,255,.15);border-color:var(--coral)}
+.mbl-num{
+  font-family:var(--fn-m);font-size:12px;font-weight:700;
+  color:var(--coral);min-width:20px;
+}
+.mbl-info{flex:1;min-width:0}
+.mbl-name{font-family:var(--fn-d);font-size:13.5px;font-weight:700;color:#fff;line-height:1.2}
+.mbl-meta{font-size:11.5px;color:rgba(255,255,255,.5);margin-top:2px}
+.mbl-rating{font-size:11px;font-weight:600;color:var(--amber)}
+
+/* Map canvas */
+.map-canvas{
+  background:#0D1B2A;
+  border-radius:var(--rx);
+  position:relative;overflow:hidden;
+  min-height:440px;
+  border:1px solid rgba(255,255,255,.08);
+}
+.map-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+/* Roads */
+.map-road{position:absolute;background:rgba(255,255,255,.08);border-radius:2px}
+/* Pins */
+.map-pin{
+  position:absolute;
+  transform:translate(-50%,-100%);
+  cursor:pointer;z-index:2;
+  transition:transform .15s;
+}
+.map-pin:hover{transform:translate(-50%,-105%) scale(1.15)}
+.pin-head{
+  width:36px;height:36px;
+  background:var(--coral);border-radius:50% 50% 50% 0;
+  transform:rotate(-45deg);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(255,71,87,.5);
+  border:2px solid rgba(255,255,255,.25);
+}
+.pin-head.emerald{background:var(--emerald);box-shadow:0 4px 20px rgba(0,200,150,.4)}
+.pin-head.amber{background:var(--amber);box-shadow:0 4px 20px rgba(255,159,67,.4)}
+.pin-emoji{transform:rotate(45deg);font-size:15px;line-height:1}
+.pin-pulse{
+  position:absolute;top:0;left:0;
+  width:36px;height:36px;border-radius:50%;
+  border:2px solid var(--coral);opacity:0;
+  animation:pinpulse 2.5s ease-out infinite;
+}
+@keyframes pinpulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.5);opacity:0}}
+.map-search{
+  position:absolute;top:16px;left:50%;transform:translateX(-50%);
+  z-index:10;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);
+  border-radius:10px;padding:10px 16px;
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--fn-b);font-size:13.5px;color:var(--ink-muted);
+  box-shadow:var(--shadow-m);
+  width:280px;
+}
+.map-view-toggle{
+  position:absolute;bottom:16px;right:16px;z-index:10;
+  display:flex;background:rgba(255,255,255,.95);
+  border-radius:8px;overflow:hidden;
+  box-shadow:var(--shadow-m);
+}
+.mvt-btn{
+  padding:8px 14px;font-size:12.5px;font-weight:600;
+  color:var(--ink-muted);transition:all .15s;
+  display:flex;align-items:center;gap:5px;
+}
+.mvt-btn.active{background:var(--aubergine);color:#fff}
+
+/* ═══════════════════════════════════════════════════
+   DEALS SECTION
+═══════════════════════════════════════════════════ */
+.deals-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.deal-card{
+  border-radius:var(--rl);overflow:hidden;
+  position:relative;cursor:pointer;
+  box-shadow:var(--shadow-s);
+  transition:transform .2s,box-shadow .2s;
+  min-height:180px;
+}
+.deal-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-m)}
+.dc-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:72px}
+.dc-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.7) 100%)}
+.dc-discount{
+  position:absolute;top:12px;left:12px;
+  font-family:var(--fn-d);font-size:20px;font-weight:800;
+  color:#fff;background:var(--coral);
+  padding:4px 10px;border-radius:8px;
+  box-shadow:0 4px 14px rgba(255,71,87,.4);
+}
+.dc-timer{
+  position:absolute;top:12px;right:12px;
+  font-family:var(--fn-m);font-size:11px;font-weight:600;
+  color:rgba(255,255,255,.85);
+  background:rgba(0,0,0,.5);backdrop-filter:blur(4px);
+  padding:3px 9px;border-radius:5px;
+}
+.dc-body{position:absolute;bottom:0;left:0;right:0;padding:14px 16px}
+.dc-biz{font-size:11px;color:rgba(255,255,255,.65);margin-bottom:3px}
+.dc-title{font-family:var(--fn-d);font-size:14px;font-weight:700;color:#fff;line-height:1.25}
+
+/* ═══════════════════════════════════════════════════
+   SMART SEARCH (AI)
+═══════════════════════════════════════════════════ */
+.smart-section{
+  background:linear-gradient(135deg,var(--aubergine-3) 0%,#1A0F2E 100%);
+  padding:64px 0;
+  position:relative;overflow:hidden;
+}
+.smart-section::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 50% 60% at 80% 50%,rgba(255,71,87,.12),transparent 55%),
+    radial-gradient(ellipse 40% 40% at 20% 30%,rgba(0,200,150,.08),transparent 55%);
+  pointer-events:none;
+}
+.smart-in{max-width:1360px;margin:0 auto;padding:0 28px;position:relative;z-index:1}
+.smart-header{text-align:center;margin-bottom:36px}
+.smart-eyebrow{
+  font-family:var(--fn-m);font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;
+  color:var(--emerald);margin-bottom:12px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.smart-title{
+  font-family:var(--fn-d);font-size:clamp(28px,3.5vw,42px);
+  font-weight:800;color:#fff;letter-spacing:-.04em;
+  margin-bottom:10px;
+}
+.smart-sub{font-size:16px;color:rgba(255,255,255,.5);max-width:480px;margin:0 auto;line-height:1.65}
+
+.smart-input-wrap{
+  max-width:680px;margin:0 auto;
+}
+.smart-input{
+  display:flex;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(12px);
+  border:1.5px solid rgba(255,255,255,.15);
+  border-radius:var(--rx);
+  overflow:hidden;
+  box-shadow:0 8px 40px rgba(0,0,0,.3);
+  transition:border-color .2s;
+}
+.smart-input:focus-within{border-color:var(--emerald)}
+.smart-input input{
+  flex:1;border:none;outline:none;
+  background:transparent;
+  font-family:var(--fn-b);font-size:15.5px;color:#fff;
+  padding:18px 20px;
+}
+.smart-input input::placeholder{color:rgba(255,255,255,.35)}
+.smart-btn{
+  background:var(--emerald);color:#000;
+  font-family:var(--fn-d);font-weight:700;font-size:14px;
+  padding:0 24px;
+  display:flex;align-items:center;gap:7px;
+  transition:background .15s;flex-shrink:0;
+}
+.smart-btn:hover{background:var(--emerald-dim);color:#fff}
+.smart-examples{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px;
+}
+.smart-ex{
+  font-size:12.5px;font-weight:500;
+  color:rgba(255,255,255,.5);
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  padding:5px 13px;border-radius:20px;
+  cursor:pointer;transition:all .15s;
+}
+.smart-ex:hover{background:rgba(255,255,255,.12);color:rgba(255,255,255,.85)}
+
+/* Smart result cards */
+.smart-results{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;margin-top:28px;
+  display:none;
+}
+.smart-results.visible{display:grid}
+
+/* ═══════════════════════════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════════════════════════ */
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.how-step{
+  padding:32px 28px;border-right:1px solid var(--border);
+  position:relative;text-align:center;
+  transition:background .15s;
+}
+.how-step:last-child{border-right:none}
+.how-step:hover{background:#fff}
+.how-num{
+  font-family:var(--fn-d);font-size:48px;font-weight:800;
+  color:var(--aubergine-s);letter-spacing:-.05em;
+  line-height:1;margin-bottom:12px;
+}
+.how-icon{font-size:32px;margin-bottom:12px}
+.how-title{
+  font-family:var(--fn-d);font-size:16px;font-weight:800;
+  color:var(--ink);letter-spacing:-.025em;margin-bottom:8px;
+}
+.how-desc{font-size:13.5px;color:var(--ink-muted);line-height:1.65}
+
+/* ═══════════════════════════════════════════════════
+   BUSINESS OWNER CTA
+═══════════════════════════════════════════════════ */
+.owner-cta{
+  background:linear-gradient(135deg,var(--aubergine) 0%,var(--aubergine-2) 100%);
+  border-radius:var(--rx);
+  padding:56px 60px;
+  display:grid;grid-template-columns:1fr auto;
+  gap:40px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.owner-cta::before{
+  content:'';position:absolute;top:-60px;right:-40px;
+  width:320px;height:320px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.08),transparent 65%);
+  pointer-events:none;
+}
+.oc-eyebrow{
+  font-family:var(--fn-m);font-size:10px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);margin-bottom:12px;
+}
+.oc-title{
+  font-family:var(--fn-d);font-size:clamp(26px,3vw,38px);
+  font-weight:800;color:#fff;letter-spacing:-.04em;
+  margin-bottom:12px;line-height:1.1;position:relative;
+}
+.oc-title span{color:var(--amber)}
+.oc-desc{
+  font-size:15px;color:rgba(255,255,255,.6);
+  line-height:1.7;max-width:480px;
+  margin-bottom:24px;position:relative;
+}
+.oc-stats{display:flex;gap:28px;position:relative;flex-wrap:wrap}
+.oc-stat-num{
+  font-family:var(--fn-d);font-size:24px;font-weight:800;
+  color:var(--amber);letter-spacing:-.04em;line-height:1;
+}
+.oc-stat-lbl{font-size:11px;font-weight:600;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.oc-actions{display:flex;flex-direction:column;gap:10px;z-index:1;flex-shrink:0}
+.btn-list-big{
+  padding:14px 32px;border-radius:10px;
+  background:var(--amber);color:#000;
+  font-family:var(--fn-d);font-size:14.5px;font-weight:800;
+  white-space:nowrap;text-align:center;
+  transition:background .15s;
+}
+.btn-list-big:hover{background:#cc7f00}
+.btn-learn{
+  padding:13px 24px;border-radius:10px;
+  border:1.5px solid rgba(255,255,255,.22);
+  color:rgba(255,255,255,.7);
+  font-family:var(--fn-d);font-size:14px;font-weight:600;
+  text-align:center;transition:all .15s;
+}
+.btn-learn:hover{border-color:rgba(255,255,255,.45);color:#fff}
+
+/* ═══════════════════════════════════════════════════
+   STATS STRIP
+═══════════════════════════════════════════════════ */
+.stats-strip{background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px}
+.stats-in{
+  max-width:1360px;margin:0 auto;
+  display:flex;justify-content:space-between;gap:0;flex-wrap:wrap;
+}
+.stat-item{text-align:center;flex:1;padding:0 20px;border-right:1px solid var(--border)}
+.stat-item:last-child{border-right:none}
+.stat-num{
+  font-family:var(--fn-d);font-size:28px;font-weight:800;
+  letter-spacing:-.04em;line-height:1;margin-bottom:4px;
+  background:linear-gradient(135deg,var(--aubergine),var(--coral));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.stat-lbl{font-size:12px;font-weight:600;color:var(--ink-muted);text-transform:uppercase;letter-spacing:.08em}
+
+/* ═══════════════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════════════ */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.testi-card{
+  background:var(--card);border:1.5px solid var(--border);
+  border-radius:var(--rl);padding:26px;
+  box-shadow:var(--shadow-s);
+  transition:box-shadow .18s;
+}
+.testi-card:hover{box-shadow:var(--shadow-m)}
+.testi-stars{color:var(--amber);font-size:16px;margin-bottom:14px;letter-spacing:1px}
+.testi-quote{
+  font-size:14.5px;color:var(--ink);line-height:1.65;
+  font-style:italic;margin-bottom:18px;
+  position:relative;
+}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-av{
+  width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.testi-name{font-family:var(--fn-d);font-size:14px;font-weight:800;color:var(--ink)}
+.testi-role{font-size:12px;color:var(--ink-muted);margin-top:2px}
+
+/* ═══════════════════════════════════════════════════
+   PRICING
+═══════════════════════════════════════════════════ */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pricing-card{
+  background:var(--card);
+  border:2px solid var(--border);
+  border-radius:var(--rx);padding:32px;
+  position:relative;overflow:hidden;
+  transition:all .2s;
+  box-shadow:var(--shadow-s);
+}
+.pricing-card:hover{box-shadow:var(--shadow-m);transform:translateY(-3px)}
+.pricing-card.featured{
+  border-color:var(--aubergine);
+  box-shadow:0 0 0 4px rgba(45,27,105,.08),var(--shadow-m);
+}
+.pricing-card.featured::before{
+  content:'Most Popular';position:absolute;top:0;right:0;
+  background:var(--aubergine);color:#fff;
+  font-family:var(--fn-m);font-size:9px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 14px;border-radius:0 var(--rx) 0 8px;
+}
+.plan-name{
+  font-family:var(--fn-m);font-size:10.5px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-muted);margin-bottom:12px;
+}
+.plan-price{
+  font-family:var(--fn-d);font-size:38px;font-weight:800;
+  color:var(--ink);letter-spacing:-.05em;line-height:1;
+  margin-bottom:4px;
+}
+.plan-price span{font-size:16px;font-weight:500;color:var(--ink-muted);margin-right:2px}
+.plan-period{font-size:12.5px;color:var(--ink-muted);margin-bottom:20px}
+.plan-divider{height:1px;background:var(--border);margin:20px 0}
+.plan-feature{
+  display:flex;align-items:flex-start;gap:8px;
+  font-size:13.5px;color:var(--ink-muted);
+  margin-bottom:8px;line-height:1.45;
+}
+.plan-check{color:var(--emerald);font-weight:700;flex-shrink:0;margin-top:1px}
+.plan-x{color:var(--border-2);font-weight:700;flex-shrink:0;margin-top:1px}
+.btn-plan{
+  width:100%;padding:12px;border-radius:10px;
+  font-family:var(--fn-d);font-weight:700;font-size:14px;
+  margin-top:20px;text-align:center;transition:all .15s;
+}
+.btn-plan-free{
+  border:2px solid var(--border-2);color:var(--ink-muted);
+}
+.btn-plan-free:hover{border-color:var(--aubergine);color:var(--aubergine)}
+.btn-plan-pro{background:var(--aubergine);color:#fff;box-shadow:0 4px 16px rgba(45,27,105,.3)}
+.btn-plan-pro:hover{background:var(--aubergine-2);box-shadow:0 8px 24px rgba(45,27,105,.4)}
+.btn-plan-ent{background:var(--ink);color:#fff}
+.btn-plan-ent:hover{background:var(--aubergine-3)}
+
+/* ═══════════════════════════════════════════════════
+   MODALS
+═══════════════════════════════════════════════════ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(26,15,46,.7);
+  backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;
+  padding:20px;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--card);
+  border-radius:var(--rx);
+  width:100%;max-width:520px;
+  overflow:hidden;
+  box-shadow:var(--shadow-l);
+  animation:modalIn .25s ease;
+}
+@keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(12px)}to{opacity:1;transform:none}}
+.modal-hd{
+  padding:22px 26px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.modal-title{font-family:var(--fn-d);font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.03em}
+.modal-close{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--page);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;color:var(--ink-muted);cursor:pointer;transition:all .15s;
+}
+.modal-close:hover{background:var(--coral-s);color:var(--coral);border-color:var(--coral)}
+.modal-body{padding:26px}
+.form-row{margin-bottom:16px}
+.form-label{
+  font-size:12.5px;font-weight:700;
+  letter-spacing:.04em;color:var(--ink-muted);
+  display:block;margin-bottom:6px;
+  text-transform:uppercase;font-size:11px;
+}
+.form-input,.form-select,.form-textarea{
+  width:100%;border:1.5px solid var(--border-2);
+  border-radius:8px;padding:11px 14px;
+  font-family:var(--fn-b);font-size:14.5px;color:var(--ink);
+  background:var(--page);transition:border-color .15s;
+  outline:none;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--aubergine)}
+.form-textarea{resize:vertical;min-height:80px}
+.form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn-submit{
+  width:100%;padding:13px;border-radius:10px;
+  background:linear-gradient(135deg,var(--coral),#FF6B81);
+  color:#fff;font-family:var(--fn-d);font-weight:800;font-size:15px;
+  box-shadow:0 4px 20px rgba(255,71,87,.35);
+  transition:all .15s;margin-top:4px;
+}
+.btn-submit:hover{box-shadow:0 8px 28px rgba(255,71,87,.5);transform:translateY(-1px)}
+
+/* ═══════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════ */
+.footer{background:var(--ink);margin-top:0}
+.footer-top{
+  max-width:1360px;margin:0 auto;
+  padding:52px 28px 32px;
+  display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:40px;
+}
+.footer-brand-sub{
+  font-size:13.5px;color:rgba(255,255,255,.38);
+  margin-top:10px;line-height:1.65;max-width:240px;
+}
+.footer-col-title{
+  font-family:var(--fn-m);font-size:9.5px;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.25);margin-bottom:14px;
+}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:9px}
+.footer-links a{font-size:13.5px;color:rgba(255,255,255,.45);transition:color .15s}
+.footer-links a:hover{color:rgba(255,255,255,.85)}
+.footer-bottom{
+  max-width:1360px;margin:0 auto;
+  padding:16px 28px;
+  border-top:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:12px;color:rgba(255,255,255,.25);flex-wrap:wrap;gap:8px;
+}
+.fb-right{display:flex;gap:16px}
+.fb-right a{color:rgba(255,255,255,.25);transition:color .15s}
+.fb-right a:hover{color:rgba(255,255,255,.7)}
+
+/* ═══════════════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════════════ */
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:2000;
+  background:var(--ink);color:#fff;
+  padding:14px 22px;border-radius:12px;
+  font-family:var(--fn-d);font-weight:600;font-size:14px;
+  box-shadow:var(--shadow-l);
+  border-left:4px solid var(--emerald);
+  transform:translateY(80px);opacity:0;
+  transition:all .3s cubic-bezier(.34,1.56,.64,1);
+}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+@media(max-width:1100px){
+  .hero-in{grid-template-columns:1fr;gap:36px}
+  .cat-grid{grid-template-columns:repeat(4,1fr)}
+  .biz-grid-3{grid-template-columns:1fr 1fr}
+  .biz-grid-4{grid-template-columns:1fr 1fr}
+  .location-grid{grid-template-columns:repeat(4,1fr)}
+  .map-in{grid-template-columns:1fr}
+  .deals-grid{grid-template-columns:1fr 1fr}
+  .how-grid{grid-template-columns:1fr 1fr}
+  .how-step:nth-child(2){border-right:none}
+  .how-step:nth-child(3){border-right:1px solid var(--border);border-top:1px solid var(--border)}
+  .how-step:nth-child(4){border-right:none;border-top:1px solid var(--border)}
+  .featured-wide{grid-template-columns:1fr}
+  .fw-visual{min-height:180px}
+  .owner-cta{grid-template-columns:1fr;padding:36px 28px}
+  .oc-actions{flex-direction:row;flex-wrap:wrap}
+  .footer-top{grid-template-columns:1fr 1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  .nav-links{display:none}
+  .nav .btn-signin{display:none}
+  .nav-mobile-toggle{display:flex}
+  .hero{padding:48px 20px 56px}
+  .hero-h1{font-size:36px}
+  .search-box{flex-wrap:wrap;padding:10px}
+  .search-field{border-right:none;border-bottom:1.5px solid var(--border);min-width:100%}
+  .search-field:last-of-type{border-bottom:none;flex:1 1 auto}
+  .cat-grid{grid-template-columns:repeat(3,1fr)}
+  .biz-grid-3,.biz-grid-4{grid-template-columns:1fr}
+  .location-grid{grid-template-columns:repeat(3,1fr)}
+  .deals-grid{grid-template-columns:1fr}
+  .smart-results{grid-template-columns:1fr}
+  .how-grid{grid-template-columns:1fr}
+  .how-step{border-right:none!important;border-top:1px solid var(--border)}
+  .how-step:first-child{border-top:none}
+  .stats-in{gap:16px}
+  .stat-item{border-right:none;padding:10px 0}
+  .testi-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr;gap:24px}
+  .pw{padding:0 16px}
+  .smart-bar-in{flex-wrap:wrap}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero::before,.biz-card,.cat-card{animation:none;transition:none}
+  .hbp-open-dot,.pin-pulse{animation:none}
+}
+</style>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIINfQ3cJD6zGx5F+Yd6Q8h7lY5sQ4xJ8="
+  crossorigin=""/>
+<style>
+/* Full-stack enhancements */
+.biz-thumb-bg.has-image{background-position:center;background-size:cover;background-repeat:no-repeat;position:relative}
+.biz-thumb-bg.has-image::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.02) 30%,rgba(0,0,0,.34))}
+.biz-thumb-bg.has-image > span{position:relative;z-index:2;display:none}
+.fw-visual-bg.has-image{background-position:center;background-size:cover;background-repeat:no-repeat}
+.zb-detail{max-width:760px}
+.zb-detail-hero{display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:center}
+.zb-detail-cover{height:150px;border-radius:16px;background-position:center;background-size:cover;background-color:#eee8ff;overflow:hidden}
+.zb-detail-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.zb-detail-name{font-family:var(--fn-d);font-size:30px;font-weight:800;letter-spacing:-.04em;line-height:1.1}
+.zb-detail-meta{display:flex;flex-wrap:wrap;gap:8px 14px;margin-top:9px;color:var(--ink-muted);font-size:13px}
+.zb-detail-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.zb-action{padding:10px 14px;border-radius:9px;font-weight:700;font-size:13px;border:1.5px solid var(--border-2);background:#fff}
+.zb-action.primary{background:var(--aubergine);border-color:var(--aubergine);color:#fff}
+.zb-action.wa{background:var(--emerald-s);color:var(--emerald);border-color:rgba(0,200,150,.25)}
+.zb-action.quote{background:var(--coral-s);color:var(--coral);border-color:rgba(255,71,87,.2)}
+.zb-detail-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:20px}
+.zb-panel{border:1.5px solid var(--border);border-radius:14px;padding:18px;background:var(--card-2)}
+.zb-panel h4{font-family:var(--fn-d);font-size:15px;margin-bottom:10px}
+.zb-list{display:flex;flex-direction:column;gap:8px;color:var(--ink-muted);font-size:13px}
+.zb-review{padding:10px 0;border-top:1px solid var(--border)}
+.zb-review:first-child{border-top:0;padding-top:0}
+.zb-review strong{color:var(--ink)}
+.zb-form{margin-top:14px}
+#live-map{position:absolute;inset:0;z-index:1}
+#map-canvas .map-bg,#map-canvas .map-road,#map-canvas #map-pins{z-index:0}
+#map-canvas .map-search,#map-canvas .map-view-toggle{z-index:500}
+.leaflet-control-attribution{font-size:9px}
+@media(max-width:720px){
+  .zb-detail-hero{grid-template-columns:1fr}
+  .zb-detail-cover{height:190px}
+  .zb-detail-grid{grid-template-columns:1fr}
+}
+</style>
+
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- QUOTE MODAL -->
+<div class="modal-overlay" id="quoteModal">
+  <div class="modal">
+    <div class="modal-hd">
+      <span class="modal-title">💬 Request a Quote</span>
+      <button class="modal-close" onclick="closeModal('quoteModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <label class="form-label">Service needed</label>
+        <input class="form-input" type="text" placeholder="e.g. Plumbing repair, Website design…" id="quote-service"/>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Describe what you need</label>
+        <textarea class="form-textarea" placeholder="Tell the business what you need…" id="quote-desc"></textarea>
+      </div>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label class="form-label">Budget (USD)</label>
+          <input class="form-input" type="text" placeholder="e.g. $200 – $500" id="quote-budget"/>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Location</label>
+          <input class="form-input" type="text" placeholder="e.g. Borrowdale, Harare" id="quote-loc"/>
+        </div>
+      </div>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label class="form-label">Phone number</label>
+          <input class="form-input" type="tel" placeholder="+263 77…" id="quote-phone"/>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Preferred date</label>
+          <input class="form-input" type="date" id="quote-date"/>
+        </div>
+      </div>
+      <button class="btn-submit" onclick="submitQuote()">
+        🚀 Send Quote Request
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal">
+    <div class="modal-hd">
+      <span class="modal-title">📅 Book a Service</span>
+      <button class="modal-close" onclick="closeModal('bookingModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <label class="form-label">Select service</label>
+        <select class="form-select" id="book-service">
+          <option>Choose a service…</option>
+          <option>Emergency Plumbing Repair</option>
+          <option>Pipe Installation</option>
+          <option>Bathroom Fitting</option>
+          <option>Drain Clearing</option>
+        </select>
+      </div>
+      <div class="form-grid-2">
+        <div class="form-row">
+          <label class="form-label">Date</label>
+          <input class="form-input" type="date" id="book-date"/>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Time</label>
+          <select class="form-select" id="book-time">
+            <option>08:00 AM</option><option>09:00 AM</option>
+            <option>10:00 AM</option><option>11:00 AM</option>
+            <option>12:00 PM</option><option>02:00 PM</option>
+            <option>03:00 PM</option><option>04:00 PM</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Your name</label>
+        <input class="form-input" type="text" placeholder="Full name" id="book-name"/>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Phone / WhatsApp</label>
+        <input class="form-input" type="tel" placeholder="+263 77…" id="book-phone"/>
+      </div>
+      <button class="btn-submit" onclick="submitBooking()" style="background:linear-gradient(135deg,var(--emerald),var(--emerald-dim));box-shadow:0 4px 20px rgba(0,200,150,.35)">
+        ✅ Confirm Booking
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- LIST YOUR BUSINESS MODAL -->
+<div class="modal-overlay" id="listModal">
+  <div class="modal" style="max-width:580px">
+    <div class="modal-hd">
+      <span class="modal-title">🏢 List Your Business</span>
+      <button class="modal-close" onclick="closeModal('listModal')">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="reg-steps">
+        <div class="form-row">
+          <label class="form-label">Business name</label>
+          <input class="form-input" type="text" placeholder="e.g. Harare Plumbing Pros" id="reg-name" required/>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-row">
+            <label class="form-label">Category</label>
+            <select class="form-select" id="reg-category" required>
+              <option value="">Select category…</option>
+              <option>Food & Dining</option><option>Professional Services</option>
+              <option>Home & Construction</option><option>Automotive</option>
+              <option>Health</option><option>Shopping</option>
+              <option>Weddings & Events</option><option>Education</option>
+              <option>Travel & Hotels</option><option>Beauty & Wellness</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label class="form-label">City</label>
+            <select class="form-select" id="reg-city" required>
+              <option value="">Select city…</option>
+              <option>Harare</option><option>Bulawayo</option><option>Mutare</option><option>Gweru</option>
+              <option>Masvingo</option><option>Victoria Falls</option><option>Kwekwe</option><option>Kadoma</option>
+              <option>Marondera</option><option>Bindura</option><option>Chinhoyi</option><option>Hwange</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-grid-2">
+          <div class="form-row">
+            <label class="form-label">Phone</label>
+            <input class="form-input" type="tel" placeholder="+263 77…" id="reg-phone" required/>
+          </div>
+          <div class="form-row">
+            <label class="form-label">WhatsApp</label>
+            <input class="form-input" type="tel" placeholder="+263 77…" id="reg-whatsapp"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Short description</label>
+          <textarea class="form-textarea" placeholder="What does your business do?" style="min-height:70px" id="reg-desc" required></textarea>
+        </div>
+        <button class="btn-submit" onclick="submitListBiz()">🚀 List My Business Free</button>
+        <p style="text-align:center;font-size:12px;color:var(--ink-muted);margin-top:10px">Demo onboarding · Business is submitted for review</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAV ════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-in">
+    <div class="nav-brand">
+      <div class="brand-mark">🏪</div>
+      <div class="brand-word">Zim<span>Biz</span></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#categories">Categories</a></li>
+      <li><a href="#explore">Explore</a></li>
+      <li><a href="#deals">Deals</a></li>
+      <li><a href="#smart">Smart Search</a></li>
+      <li><a href="#pricing">For Businesses</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-signin">Sign In</button>
+      <button class="btn-list" onclick="openModal('listModal')">+ List Your Business</button>
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══ HERO ════════════════════════════════════════════ -->
+<section class="hero" aria-labelledby="hero-h1">
+  <div class="hero-in">
+    <div>
+      <div class="hero-kicker">Zimbabwe's Business Directory</div>
+      <h1 class="hero-h1" id="hero-h1">
+        Find the right<br/>
+        business in<br/>
+        <span class="hl-coral">Zimbabwe.</span>
+      </h1>
+      <p class="hero-sub">Discover trusted businesses, professionals and services near you — restaurants, lawyers, plumbers, doctors and 12,000+ more.</p>
+
+      <!-- Search box -->
+      <div class="search-box" role="search">
+        <div class="search-field">
+          <span class="search-field-icon">🔍</span>
+          <input type="search" placeholder="Plumber, restaurant, lawyer…" id="main-search" aria-label="What are you looking for?"/>
+        </div>
+        <div class="search-field">
+          <span class="search-field-icon">📍</span>
+          <input type="text" placeholder="Harare, Bulawayo…" id="location-search" aria-label="Where?"/>
+        </div>
+        <button class="search-btn" onclick="doSearch()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Search
+        </button>
+      </div>
+      <div class="search-tags">
+        <span class="search-tag-lbl">Try:</span>
+        <button class="stag" onclick="quickSearch('Plumber')">Plumber</button>
+        <button class="stag" onclick="quickSearch('Restaurant')">Restaurant</button>
+        <button class="stag" onclick="quickSearch('Lawyer')">Lawyer</button>
+        <button class="stag" onclick="quickSearch('Doctor')">Doctor</button>
+        <button class="stag" onclick="quickSearch('Mechanic')">Mechanic</button>
+      </div>
+
+      <!-- Intent buttons -->
+      <div class="intent-row" role="group" aria-label="What do you need?">
+        <button class="intent-btn" onclick="selectIntent(this,'service')">🔧 I need a service</button>
+        <button class="intent-btn" onclick="selectIntent(this,'shop')">🛍️ I want to shop</button>
+        <button class="intent-btn" onclick="selectIntent(this,'eat')">🍽️ Somewhere to eat</button>
+        <button class="intent-btn" onclick="selectIntent(this,'stay')">🏨 A place to stay</button>
+        <button class="intent-btn" onclick="selectIntent(this,'pro')">👔 A professional</button>
+      </div>
+    </div>
+
+    <!-- Right panel -->
+    <div class="hero-stats">
+      <div>
+        <div class="hs-title">📊 ZimBiz at a glance</div>
+        <div class="hs-sub">Updated daily from businesses across Zimbabwe</div>
+      </div>
+      <div class="hs-stats">
+        <div class="hs-stat">
+          <div class="hs-num" id="stat-biz">0</div>
+          <div class="hs-lbl">Businesses</div>
+        </div>
+        <div class="hs-stat">
+          <div class="hs-num" id="stat-cat">0</div>
+          <div class="hs-lbl">Categories</div>
+        </div>
+        <div class="hs-stat">
+          <div class="hs-num" id="stat-cities">0</div>
+          <div class="hs-lbl">Cities</div>
+        </div>
+      </div>
+
+      <!-- Live business previews -->
+      <div class="hero-biz-preview" id="hero-biz-preview" aria-label="Featured businesses"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SMART BAR ════════════════════════════════════════ -->
+<div class="smart-bar">
+  <div class="smart-bar-in">
+    <div class="smart-search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--ink-dim);flex-shrink:0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="search" placeholder="Search all businesses…" id="bar-search" oninput="filterBusinesses()"/>
+    </div>
+    <div class="filter-chips">
+      <button class="fc emerald active" onclick="toggleFilter(this,'open')">🟢 Open Now</button>
+      <button class="fc" onclick="toggleFilter(this,'verified')">✅ Verified</button>
+      <button class="fc" onclick="toggleFilter(this,'wa')">💬 WhatsApp</button>
+      <button class="fc" onclick="toggleFilter(this,'deals')">🏷️ Has Deals</button>
+      <button class="fc" onclick="toggleFilter(this,'top')">⭐ Top Rated</button>
+    </div>
+    <div class="view-toggle">
+      <button class="vt-btn active" onclick="switchView('list',this)" id="v-list">☰ List</button>
+      <button class="vt-btn" onclick="switchView('map',this)" id="v-map">🗺️ Map</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CATEGORIES ════════════════════════════════════════ -->
+<section class="section" id="categories">
+  <div class="pw">
+    <div class="section-hd">
+      <div class="sh-left">
+        <div class="sh-accent" style="background:linear-gradient(180deg,var(--coral),var(--amber))"></div>
+        <h2 class="sh-title">Browse by Category</h2>
+        <span class="sh-count">48 categories</span>
+      </div>
+      <a href="#" class="sh-see-all">All categories →</a>
+    </div>
+    <div class="cat-grid" id="cat-grid" role="list"></div>
+    <div class="cat-sub-row" id="cat-sub-row" style="margin-top:20px" role="group" aria-label="Sub-categories"></div>
+  </div>
+</section>
+
+<!-- ══ FEATURED BUSINESS ════════════════════════════════ -->
+<div class="pw" style="padding-bottom:0">
+  <div class="section-hd">
+    <div class="sh-left">
+      <div class="sh-accent" style="background:linear-gradient(180deg,var(--amber),#FF8A00)"></div>
+      <h2 class="sh-title">Featured Business</h2>
+      <span class="sh-count">Sponsored</span>
+    </div>
+  </div>
+  <div class="featured-wide" tabindex="0" aria-label="Victoria Falls Safari Lodge">
+    <div class="fw-visual">
+      <div class="fw-visual-bg" style="background:linear-gradient(135deg,#1A1A00,#2A3A00,#1A2A10)"></div>
+      <span style="font-size:100px;position:relative;z-index:2;filter:drop-shadow(0 0 30px rgba(255,200,0,.3))">🦁</span>
+      <div class="fw-ov"></div>
+    </div>
+    <div class="fw-body">
+      <div>
+        <div class="fw-badge">⭐ Featured Business</div>
+        <div class="fw-name">Victoria Falls Safari Lodge</div>
+        <div class="fw-desc">Zimbabwe's premier wildlife lodge experience, situated in a private wildlife sanctuary adjacent to Victoria Falls National Park. Offering game drives, guided walks, world-class dining and luxury accommodation.</div>
+        <div class="fw-meta">
+          <div style="display:flex;align-items:center;gap:6px">
+            <span style="color:var(--amber);font-size:14px">★★★★★</span>
+            <span style="font-weight:700;font-size:14px">4.9</span>
+            <span style="color:var(--ink-muted);font-size:13px">(348 reviews)</span>
+          </div>
+          <span style="display:flex;align-items:center;gap:5px;font-size:13px;color:var(--ink-muted)">📍 Victoria Falls, Matabeleland North</span>
+          <div class="biz-open-badge open" style="position:static;background:var(--emerald-s)"><div class="biz-od"></div>Open Now</div>
+        </div>
+      </div>
+      <div class="fw-actions">
+        <button class="btn-view" style="padding:11px 24px;font-size:14px">View Profile</button>
+        <button class="btn-wa" style="padding:11px 20px;font-size:14px" onclick="whatsAppClick('Victoria Falls Safari Lodge')">💬 WhatsApp</button>
+        <button class="btn-quote" style="padding:11px 18px;font-size:13px" onclick="openModal('quoteModal')">📋 Request Quote</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FEATURED BUSINESSES GRID ══════════════════════════ -->
+<section class="section">
+  <div class="pw">
+    <div class="section-hd">
+      <div class="sh-left">
+        <div class="sh-accent" style="background:linear-gradient(180deg,var(--aubergine),var(--coral))"></div>
+        <h2 class="sh-title">Featured Businesses</h2>
+        <span class="sh-count" id="biz-shown-count">12 businesses</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <select style="border:1.5px solid var(--border-2);border-radius:8px;padding:7px 12px;font-family:var(--fn-b);font-size:13px;color:var(--ink-muted);background:#fff;cursor:pointer" onchange="sortBusinesses(this.value)">
+          <option value="recommended">Recommended</option>
+          <option value="rating">Highest Rated</option>
+          <option value="reviews">Most Reviewed</option>
+          <option value="new">Recently Added</option>
+        </select>
+        <a href="#" class="sh-see-all">See all 12,000+ →</a>
+      </div>
+    </div>
+    <div class="biz-grid-3" id="biz-grid" role="list"></div>
+    <div style="text-align:center;margin-top:32px">
+      <button onclick="loadMore()" style="padding:13px 36px;border-radius:10px;border:2px solid var(--aubergine);color:var(--aubergine);font-family:var(--fn-d);font-weight:700;font-size:14.5px;transition:all .15s;background:#fff" onmouseover="this.style.background='var(--aubergine)';this.style.color='#fff'" onmouseout="this.style.background='#fff';this.style.color='var(--aubergine)'">
+        Load more businesses ↓
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LOCATION EXPLORER ═════════════════════════════════ -->
+<section class="section" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)" id="explore">
+  <div class="pw">
+    <div class="section-hd">
+      <div class="sh-left">
+        <div class="sh-accent" style="background:linear-gradient(180deg,var(--emerald),var(--blue))"></div>
+        <h2 class="sh-title">Explore Zimbabwe</h2>
+        <span class="sh-count">14 cities</span>
+      </div>
+      <a href="#" class="sh-see-all">All locations →</a>
+    </div>
+    <div class="location-grid" id="location-grid" role="list"></div>
+  </div>
+</section>
+
+<!-- ══ MAP SECTION ══════════════════════════════════════ -->
+<div class="map-section">
+  <div class="map-in">
+    <div class="map-left">
+      <div>
+        <div class="map-hd">🗺️ Businesses Near You</div>
+        <p class="map-sub">Browse businesses on the map or scroll the list. Click a pin to see details.</p>
+      </div>
+      <div class="filter-chips" style="flex-wrap:wrap">
+        <button class="fc active" onclick="toggleFilter(this,'all')" style="background:var(--coral);color:#fff;border-color:var(--coral)">All</button>
+        <button class="fc" onclick="toggleFilter(this,'food')" style="color:var(--ink-muted)">🍽️ Food</button>
+        <button class="fc" onclick="toggleFilter(this,'services')" style="color:var(--ink-muted)">🔧 Services</button>
+        <button class="fc" onclick="toggleFilter(this,'health')" style="color:var(--ink-muted)">🏥 Health</button>
+      </div>
+      <div class="map-biz-list" id="map-biz-list" role="list"></div>
+    </div>
+    <div class="map-canvas" id="map-canvas">
+      <div class="map-bg"></div>
+      <!-- Roads -->
+      <div class="map-road" style="top:45%;left:0;right:0;height:3px"></div>
+      <div class="map-road" style="top:30%;left:0;right:0;height:2px;opacity:.5"></div>
+      <div class="map-road" style="top:65%;left:0;right:0;height:2px;opacity:.4"></div>
+      <div class="map-road" style="left:35%;top:0;bottom:0;width:3px"></div>
+      <div class="map-road" style="left:60%;top:0;bottom:0;width:2px;opacity:.5"></div>
+      <div class="map-road" style="left:20%;top:0;bottom:0;width:2px;opacity:.3"></div>
+      <div id="map-pins"></div>
+      <div class="map-search">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:#9AAABF;flex-shrink:0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Search this area…
+      </div>
+      <div class="map-view-toggle">
+        <button class="mvt-btn active" onclick="this.classList.add('active');this.nextElementSibling.classList.remove('active')">☰ List</button>
+        <button class="mvt-btn" onclick="this.classList.add('active');this.previousElementSibling.classList.remove('active')">🗺️ Satellite</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TRENDING BUSINESSES ════════════════════════════════ -->
+<section class="section">
+  <div class="pw">
+    <div class="section-hd">
+      <div class="sh-left">
+        <div class="sh-accent" style="background:linear-gradient(180deg,var(--coral),#FF8A65)"></div>
+        <h2 class="sh-title">Trending This Week 🔥</h2>
+      </div>
+      <a href="#" class="sh-see-all">All trending →</a>
+    </div>
+    <div class="biz-grid-4" id="trending-grid" role="list"></div>
+  </div>
+</section>
+
+<!-- ══ DEALS ═════════════════════════════════════════════ -->
+<section class="section" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)" id="deals">
+  <div class="pw">
+    <div class="section-hd">
+      <div class="sh-left">
+        <div class="sh-accent" style="background:linear-gradient(180deg,var(--amber),var(--coral))"></div>
+        <h2 class="sh-title">🏷️ Hot Deals Near You</h2>
+        <span class="sh-count">Limited time</span>
+      </div>
+      <a href="#" class="sh-see-all">All deals →</a>
+    </div>
+    <div class="deals-grid" id="deals-grid" role="list"></div>
+  </div>
+</section>
+
+<!-- ══ SMART SEARCH / AI ══════════════════════════════════ -->
+<section class="smart-section" id="smart">
+  <div class="smart-in">
+    <div class="smart-header">
+      <div class="smart-eyebrow">✨ <span>ZimBiz Smart Search</span></div>
+      <h2 class="smart-title">Search the way you think.</h2>
+      <p class="smart-sub">Describe what you need in plain English. ZimBiz finds the right businesses for you.</p>
+    </div>
+    <div class="smart-input-wrap">
+      <div class="smart-input">
+        <input type="text" placeholder="e.g. I need a reliable plumber in Borrowdale who can come tomorrow…" id="smart-input"/>
+        <button class="smart-btn" onclick="doSmartSearch()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Find
+        </button>
+      </div>
+      <div class="smart-examples">
+        <span class="smart-ex" onclick="setSmartEx(this)">Affordable wedding photographer in Harare under $500</span>
+        <span class="smart-ex" onclick="setSmartEx(this)">Best restaurant in Borrowdale open on Sunday</span>
+        <span class="smart-ex" onclick="setSmartEx(this)">Emergency electrician available tonight in Avondale</span>
+        <span class="smart-ex" onclick="setSmartEx(this)">Trusted mechanic for Toyota near Eastlea</span>
+      </div>
+    </div>
+    <div class="smart-results" id="smart-results"></div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ═════════════════════════════════════ -->
+<section class="section" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="pw">
+    <div class="section-hd" style="margin-bottom:0">
+      <div class="sh-left">
+        <div class="sh-accent" style="background:var(--blue)"></div>
+        <h2 class="sh-title">How ZimBiz works</h2>
+      </div>
+    </div>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <div class="how-icon">🔍</div>
+        <div class="how-title">Search or browse</div>
+        <p class="how-desc">Find businesses by name, category, service or location. Filter by rating, open now, verified, and more.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02</div>
+        <div class="how-icon">📋</div>
+        <div class="how-title">View profiles</div>
+        <p class="how-desc">See full business profiles with photos, services, prices, reviews, hours and contact information.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <div class="how-icon">💬</div>
+        <div class="how-title">Contact or book</div>
+        <p class="how-desc">Call, WhatsApp, request a quote or book directly. One tap is all it takes to start the conversation.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">04</div>
+        <div class="how-icon">⭐</div>
+        <div class="how-title">Leave a review</div>
+        <p class="how-desc">Share your experience to help other Zimbabweans find the best businesses in their area.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BUSINESS OWNER CTA ════════════════════════════════ -->
+<section class="section">
+  <div class="pw">
+    <div class="owner-cta" role="complementary">
+      <div>
+        <div class="oc-eyebrow">For business owners</div>
+        <h2 class="oc-title">Reach <span>more customers</span><br/>across Zimbabwe.</h2>
+        <p class="oc-desc">Create your free listing today and get discovered by thousands of Zimbabweans searching for exactly what you offer. Premium plans unlock leads, bookings, analytics and priority placement.</p>
+        <div class="oc-stats">
+          <div><div class="oc-stat-num">12,000+</div><div class="oc-stat-lbl">Businesses listed</div></div>
+          <div><div class="oc-stat-num">840K</div><div class="oc-stat-lbl">Monthly searches</div></div>
+          <div><div class="oc-stat-num">96K</div><div class="oc-stat-lbl">Leads generated</div></div>
+        </div>
+      </div>
+      <div class="oc-actions">
+        <button class="btn-list-big" onclick="openModal('listModal')">🏢 List Your Business Free</button>
+        <a href="#pricing" class="btn-learn">See premium plans →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS STRIP ════════════════════════════════════════ -->
+<div class="stats-strip">
+  <div class="stats-in" role="list">
+    <div class="stat-item" role="listitem"><div class="stat-num" id="ss1">12,400+</div><div class="stat-lbl">Businesses listed</div></div>
+    <div class="stat-item" role="listitem"><div class="stat-num" id="ss2">840K</div><div class="stat-lbl">Monthly searches</div></div>
+    <div class="stat-item" role="listitem"><div class="stat-num" id="ss3">96K+</div><div class="stat-lbl">Leads generated</div></div>
+    <div class="stat-item" role="listitem"><div class="stat-num" id="ss4">4.8★</div><div class="stat-lbl">Average business rating</div></div>
+    <div class="stat-item" role="listitem"><div class="stat-num" id="ss5">48</div><div class="stat-lbl">Business categories</div></div>
+  </div>
+</div>
+
+<!-- ══ PRICING ════════════════════════════════════════════ -->
+<section class="section" id="pricing">
+  <div class="pw">
+    <div class="section-hd">
+      <div class="sh-left">
+        <div class="sh-accent" style="background:linear-gradient(180deg,var(--aubergine),var(--blue))"></div>
+        <h2 class="sh-title">Plans & Pricing</h2>
+      </div>
+      <a href="#" class="sh-see-all">Compare all features →</a>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-name">Free</div>
+        <div class="plan-price"><span>$</span>0</div>
+        <div class="plan-period">Forever free · No credit card</div>
+        <div class="plan-divider"></div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Basic business profile</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Contact information</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Category listing</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Up to 5 photos</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Customer reviews</div>
+        <div class="plan-feature"><span class="plan-x">✗</span> Featured placement</div>
+        <div class="plan-feature"><span class="plan-x">✗</span> Analytics dashboard</div>
+        <div class="plan-feature"><span class="plan-x">✗</span> Lead generation</div>
+        <button class="btn-plan btn-plan-free" onclick="openModal('listModal')">Get started free</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="plan-name">Pro</div>
+        <div class="plan-price"><span>$</span>29</div>
+        <div class="plan-period">per month · billed monthly</div>
+        <div class="plan-divider"></div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Everything in Free</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Featured placement in search</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Unlimited photos</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Analytics & insights</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Lead generation</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Quote requests</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Booking system</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Promotions & deals</div>
+        <button class="btn-plan btn-plan-pro">Start Pro trial</button>
+      </div>
+      <div class="pricing-card">
+        <div class="plan-name">Enterprise</div>
+        <div class="plan-price"><span>$</span>89</div>
+        <div class="plan-period">per month · priority support</div>
+        <div class="plan-divider"></div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Everything in Pro</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Top featured placement</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Verified business badge</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Multiple locations</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> API access</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Dedicated account manager</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Custom branding</div>
+        <div class="plan-feature"><span class="plan-check">✓</span> Advanced analytics</div>
+        <button class="btn-plan btn-plan-ent">Contact sales</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ════════════════════════════════════════ -->
+<section class="section" style="background:var(--card);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="pw">
+    <div class="section-hd">
+      <div class="sh-left">
+        <div class="sh-accent" style="background:var(--amber)"></div>
+        <h2 class="sh-title">What businesses say</h2>
+      </div>
+    </div>
+    <div class="testi-grid" id="testi-grid" role="list"></div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-top">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px">
+        <div class="brand-mark" style="width:32px;height:32px;font-size:16px">🏪</div>
+        <div class="brand-word" style="font-size:19px">Zim<span>Biz</span></div>
+      </div>
+      <p class="footer-brand-sub">Zimbabwe's business directory, discovery and marketplace platform. Find trusted businesses, professionals and services near you — across every city and town in Zimbabwe.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Discover</div>
+      <ul class="footer-links">
+        <li><a href="#">Browse Categories</a></li>
+        <li><a href="#">Businesses by City</a></li>
+        <li><a href="#">Hot Deals</a></li>
+        <li><a href="#">Top Rated</a></li>
+        <li><a href="#">New Businesses</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">For Businesses</div>
+      <ul class="footer-links">
+        <li><a href="#" onclick="openModal('listModal');return false">List Your Business</a></li>
+        <li><a href="#">Claim a Listing</a></li>
+        <li><a href="#pricing">Pricing Plans</a></li>
+        <li><a href="#">Business Dashboard</a></li>
+        <li><a href="#">Advertising</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About ZimBiz</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Help Centre</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ZimBiz. All rights reserved. 🇿🇼 Zimbabwe's Business Directory.</span>
+    <div class="fb-right">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ JAVASCRIPT ════════════════════════════════════════ -->
+<script>
+/* ═══════════════════════════════════════════════════
+   MOCK DATA
+═══════════════════════════════════════════════════ */
+const businesses = [
+  {
+    id:1, name:'Harare Plumbing Pros', category:'Plumbing', city:'Harare', suburb:'Avondale',
+    emoji:'🔧', bg:'linear-gradient(135deg,#0A1A30,#1A3050)', logoEmoji:'🔧', logoBg:'#EBF5FF',
+    rating:4.9, reviews:218, price:'$$', isOpen:true, isVerified:true, isPremium:true,
+    desc:'Emergency and scheduled plumbing services across Harare. Same-day service available.',
+    signal:'var(--blue)', hasWa:true, hasDeals:false, isTop:true, isTrending:true, isNew:false,
+    tags:['Emergency','Residential','Commercial'],
+  },
+  {
+    id:2, name:'The Garden Bistro', category:'Restaurant', city:'Harare', suburb:'Borrowdale',
+    emoji:'🍽️', bg:'linear-gradient(135deg,#1A1000,#3A2500)', logoEmoji:'🌿', logoBg:'#E8F5ED',
+    rating:4.8, reviews:512, price:'$$$', isOpen:true, isVerified:true, isPremium:true,
+    desc:'Award-winning garden restaurant serving contemporary African cuisine with fresh local produce.',
+    signal:'var(--emerald)', hasWa:true, hasDeals:true, isTop:true, isTrending:true, isNew:false,
+    tags:['Dine-in','Garden','Events'],
+  },
+  {
+    id:3, name:'Mbare Hardware & Supplies', category:'Hardware', city:'Harare', suburb:'Mbare',
+    emoji:'🏗️', bg:'linear-gradient(135deg,#1A0A00,#3A1800)', logoEmoji:'🔩', logoBg:'#FFF5E0',
+    rating:4.6, reviews:89, price:'$', isOpen:true, isVerified:true, isPremium:false,
+    desc:'Complete hardware and building supplies. Wholesale and retail. Delivery available across Harare.',
+    signal:'var(--amber)', hasWa:true, hasDeals:true, isTop:false, isTrending:false, isNew:false,
+    tags:['Wholesale','Delivery','Building'],
+  },
+  {
+    id:4, name:'Borrowdale Medical Centre', category:'Health', city:'Harare', suburb:'Borrowdale',
+    emoji:'🏥', bg:'linear-gradient(135deg,#001A30,#002A50)', logoEmoji:'⚕️', logoBg:'#EBF5FF',
+    rating:4.7, reviews:341, price:'$$$', isOpen:false, isVerified:true, isPremium:true,
+    desc:'Multi-specialty medical centre with experienced doctors, specialists and modern diagnostic equipment.',
+    signal:'#2F80ED', hasWa:true, hasDeals:false, isTop:true, isTrending:false, isNew:false,
+    tags:['Specialists','Emergency','Pediatrics'],
+  },
+  {
+    id:5, name:'Skyline Events & Decor', category:'Events', city:'Harare', suburb:'Mount Pleasant',
+    emoji:'🎊', bg:'linear-gradient(135deg,#200040,#400080)', logoEmoji:'🎉', logoBg:'#EEE8FF',
+    rating:4.9, reviews:176, price:'$$$', isOpen:true, isVerified:true, isPremium:true,
+    desc:'Premium event planning, decoration and management. Weddings, corporates and private events.',
+    signal:'var(--aubergine)', hasWa:true, hasDeals:true, isTop:true, isTrending:true, isNew:false,
+    tags:['Weddings','Corporate','Décor'],
+  },
+  {
+    id:6, name:'Bulawayo Auto Centre', category:'Automotive', city:'Bulawayo', suburb:'Bellevue',
+    emoji:'🚗', bg:'linear-gradient(135deg,#0A1A00,#1A3000)', logoEmoji:'🔧', logoBg:'#E8F5ED',
+    rating:4.8, reviews:294, price:'$$', isOpen:true, isVerified:true, isPremium:false,
+    desc:'Full-service auto workshop. Mechanics, panel beating, spray painting and electrical. All makes and models.',
+    signal:'var(--emerald)', hasWa:true, hasDeals:false, isTop:false, isTrending:true, isNew:false,
+    tags:['All Makes','Panel Beating','Electrical'],
+  },
+  {
+    id:7, name:'Harare Legal Associates', category:'Legal', city:'Harare', suburb:'CBD',
+    emoji:'⚖️', bg:'linear-gradient(135deg,#1A0A00,#301500)', logoEmoji:'⚖️', logoBg:'#FFF5E0',
+    rating:4.7, reviews:128, price:'$$$$', isOpen:false, isVerified:true, isPremium:true,
+    desc:'Commercial and corporate law firm. Property, employment, company registration and litigation.',
+    signal:'var(--amber)', hasWa:false, hasDeals:false, isTop:true, isTrending:false, isNew:false,
+    tags:['Commercial','Property','Litigation'],
+  },
+  {
+    id:8, name:'Lens & Light Photography', category:'Photography', city:'Harare', suburb:'Eastlea',
+    emoji:'📸', bg:'linear-gradient(135deg,#200010,#400020)', logoEmoji:'📷', logoBg:'#FFE8EC',
+    rating:5.0, reviews:84, price:'$$', isOpen:true, isVerified:false, isPremium:false,
+    desc:'Professional wedding, portrait and event photography. Affordable packages. Portfolio available.',
+    signal:'var(--coral)', hasWa:true, hasDeals:true, isTop:false, isTrending:true, isNew:true,
+    tags:['Weddings','Portraits','Events'],
+  },
+  {
+    id:9, name:'Gweru Catering & Confectionery', category:'Catering', city:'Gweru', suburb:'Central',
+    emoji:'🎂', bg:'linear-gradient(135deg,#001A10,#003020)', logoEmoji:'🍰', logoBg:'#E0FFF6',
+    rating:4.6, reviews:56, price:'$$', isOpen:true, isVerified:true, isPremium:false,
+    desc:'Custom cakes, finger foods and full catering for corporate and private events. Delivery across Midlands.',
+    signal:'var(--emerald)', hasWa:true, hasDeals:false, isTop:false, isTrending:false, isNew:true,
+    tags:['Custom Cakes','Catering','Delivery'],
+  },
+  {
+    id:10, name:'Mutare IT Solutions', category:'IT Services', city:'Mutare', suburb:'Dangamvura',
+    emoji:'💻', bg:'linear-gradient(135deg,#080820,#181840)', logoEmoji:'🖥️', logoBg:'#EEE8FF',
+    rating:4.8, reviews:67, price:'$$', isOpen:true, isVerified:true, isPremium:false,
+    desc:'Computer repair, networking, CCTV installation and IT support. Schools and businesses welcome.',
+    signal:'var(--aubergine)', hasWa:true, hasDeals:false, isTop:false, isTrending:false, isNew:true,
+    tags:['Networking','CCTV','Support'],
+  },
+  {
+    id:11, name:'Victoria Falls Safari Lodge', category:'Travel', city:'Victoria Falls', suburb:'National Park',
+    emoji:'🦁', bg:'linear-gradient(135deg,#1A1A00,#2A3A00)', logoEmoji:'🌍', logoBg:'#FFF5E0',
+    rating:4.9, reviews:348, price:'$$$$', isOpen:true, isVerified:true, isPremium:true,
+    desc:'Zimbabwe\'s premier wildlife lodge adjacent to Victoria Falls. Game drives, fine dining, luxury rooms.',
+    signal:'var(--amber)', hasWa:true, hasDeals:false, isTop:true, isTrending:true, isNew:false,
+    tags:['Luxury','Game Drives','Dining'],
+  },
+  {
+    id:12, name:'Kwekwe Beauty Studio', category:'Beauty', city:'Kwekwe', suburb:'Msasa Park',
+    emoji:'💅', bg:'linear-gradient(135deg,#280020,#400040)', logoEmoji:'💄', logoBg:'#FFE8EC',
+    rating:4.7, reviews:143, price:'$', isOpen:true, isVerified:false, isPremium:false,
+    desc:'Full-service beauty salon. Hair, nails, eyelashes, facials and makeup. Walk-ins welcome.',
+    signal:'var(--coral)', hasWa:true, hasDeals:true, isTop:false, isTrending:false, isNew:false,
+    tags:['Hair','Nails','Makeup'],
+  },
+];
+
+const categories = [
+  {name:'Food & Dining', emoji:'🍽️', bg:'linear-gradient(135deg,#1A0800,#3A1500)', count:'2,840', sub:['Restaurants','Takeaways','Cafes','Bakeries','Catering','Fast Food','Bars']},
+  {name:'Professional Services', emoji:'💼', bg:'linear-gradient(135deg,#0A0A20,#1A1A40)', count:'1,920', sub:['Lawyers','Accountants','Consultants','Architects','Engineers','IT Companies']},
+  {name:'Home & Construction', emoji:'🏗️', bg:'linear-gradient(135deg,#1A0A00,#2A1800)', count:'3,110', sub:['Plumbers','Electricians','Builders','Painters','Carpenters','Roofers']},
+  {name:'Automotive', emoji:'🚗', bg:'linear-gradient(135deg,#0A1A00,#1A3000)', count:'1,480', sub:['Mechanics','Car Dealers','Tyre Shops','Car Washes','Auto Parts','Towing']},
+  {name:'Health', emoji:'🏥', bg:'linear-gradient(135deg,#001A20,#002A40)', count:'2,240', sub:['Doctors','Dentists','Pharmacies','Clinics','Physiotherapy','Opticians']},
+  {name:'Shopping', emoji:'🛍️', bg:'linear-gradient(135deg,#200010,#380018)', count:'1,860', sub:['Clothing','Electronics','Furniture','Hardware','Supermarkets','Beauty']},
+  {name:'Weddings & Events', emoji:'💍', bg:'linear-gradient(135deg,#1A0820,#2A1030)', count:'940', sub:['Venues','Photographers','DJs','Decorators','Wedding Planners','Catering']},
+  {name:'Education', emoji:'🎓', bg:'linear-gradient(135deg,#001520,#002A40)', count:'1,120', sub:['Schools','Colleges','Tutors','Training Centres','Driving Schools']},
+  {name:'Travel & Hotels', emoji:'🏨', bg:'linear-gradient(135deg,#0A1A00,#18300A)', count:'720', sub:['Hotels','Lodges','Travel Agencies','Car Rental','Tour Operators']},
+  {name:'Beauty & Wellness', emoji:'💅', bg:'linear-gradient(135deg,#200010,#400030)', count:'1,340', sub:['Hair Salons','Nail Studios','Spas','Gyms','Barbers']},
+];
+
+const locations = [
+  {name:'Harare', emoji:'🏙️', count:'4,200+', featured:true},
+  {name:'Bulawayo', emoji:'🌆', count:'2,100+', featured:false},
+  {name:'Mutare', emoji:'⛰️', count:'840+', featured:false},
+  {name:'Gweru', emoji:'🏘️', count:'620+', featured:false},
+  {name:'Masvingo', emoji:'🏛️', count:'480+', featured:false},
+  {name:'Victoria Falls', emoji:'🌊', count:'380+', featured:false},
+  {name:'Kwekwe', emoji:'⚙️', count:'340+', featured:false},
+  {name:'Kadoma', emoji:'🏭', count:'290+', featured:false},
+  {name:'Marondera', emoji:'🌿', count:'260+', featured:false},
+  {name:'Bindura', emoji:'🌱', count:'210+', featured:false},
+  {name:'Chinhoyi', emoji:'🕳️', count:'190+', featured:false},
+  {name:'Hwange', emoji:'🐘', count:'160+', featured:false},
+  {name:'Zvishavane', emoji:'💎', count:'140+', featured:false},
+  {name:'Chegutu', emoji:'🏘️', count:'120+', featured:false},
+];
+
+const deals = [
+  {emoji:'🍽️', bg:'linear-gradient(135deg,#1A0800,#3A1500)', biz:'The Garden Bistro', title:'20% OFF Weekend Brunch', discount:'20%', timer:'2d 14h'},
+  {emoji:'💇', bg:'linear-gradient(135deg,#200020,#380038)', biz:'Kwekwe Beauty Studio', title:'Free Hair Treatment with Style', discount:'Free Treatment', timer:'5d 8h'},
+  {emoji:'🚗', bg:'linear-gradient(135deg,#0A1A00,#1A3000)', biz:'Bulawayo Auto Centre', title:'Free Wheel Alignment with Service', discount:'Free Alignment', timer:'3d 6h'},
+  {emoji:'📸', bg:'linear-gradient(135deg,#200010,#3A0020)', biz:'Lens & Light Photography', title:'Wedding Package — Save $200', discount:'$200 OFF', timer:'12d 0h'},
+];
+
+const mapBizItems = [
+  {num:'01', name:'Harare Plumbing Pros', meta:'Avondale · Plumbing', rating:'4.9', pin:{left:'28%',top:'42%'}, pinType:''},
+  {num:'02', name:'The Garden Bistro', meta:'Borrowdale · Restaurant', rating:'4.8', pin:{left:'58%',top:'28%'}, pinType:'emerald'},
+  {num:'03', name:'Borrowdale Medical Centre', meta:'Borrowdale · Health', rating:'4.7', pin:{left:'65%',top:'35%'}, pinType:'amber'},
+  {num:'04', name:'Skyline Events', meta:'Mt Pleasant · Events', rating:'4.9', pin:{left:'40%',top:'30%'}, pinType:''},
+  {num:'05', name:'Lens & Light Photography', meta:'Eastlea · Photography', rating:'5.0', pin:{left:'72%',top:'55%'}, pinType:'emerald'},
+];
+
+const testimonials = [
+  {stars:'★★★★★', quote:'"ZimBiz helped us get 40 new clients in our first month. The quote request system is absolutely brilliant — customers find us, we just have to respond."', name:'Tino Mhuri', role:'Owner, Harare Plumbing Pros', av:'👨🏾‍🔧', avBg:'#EBF5FF'},
+  {stars:'★★★★★', quote:'"As a restaurant owner, ZimBiz has been life-changing. Our bookings tripled within two weeks of going premium. The customer support is excellent."', name:'Chipo Ndlovu', role:'Manager, The Garden Bistro', av:'👩🏾‍🍳', avBg:'#E8F5ED'},
+  {stars:'★★★★★', quote:'"I found my wedding photographer, caterer, decorator AND venue all on ZimBiz. Saved me weeks of searching and thousands of dollars in planning."', name:'Nyasha Chikwanda', role:'ZimBiz user · Harare', av:'👰🏾', avBg:'#FFE8EC'},
+];
+
+const heroPreviewBizzes = [
+  {name:'The Garden Bistro', meta:'4.8 ★ Restaurant', emoji:'🌿', bg:'#E8F5ED', isOpen:true},
+  {name:'Harare Plumbing Pros', meta:'4.9 ★ Plumbing', emoji:'🔧', bg:'#EBF5FF', isOpen:true},
+  {name:'Skyline Events', meta:'4.9 ★ Events', emoji:'🎉', bg:'#EEE8FF', isOpen:true},
+];
+
+/* ═══════════════════════════════════════════════════
+   RENDER FUNCTIONS
+═══════════════════════════════════════════════════ */
+let activeFilters = new Set(['open']);
+let visibleBizCount = 6;
+let savedBizzes = new Set();
+
+function starStr(r) {
+  const f = Math.floor(r);
+  return '★'.repeat(f) + (r%1>=.5?'½':'') + '☆'.repeat(5-f-(r%1>=.5?1:0));
+}
+function priceLabel(p) {
+  const map = {$:'Budget',$$:'Mid-range',$$$:'Premium',$$$$:'Luxury'};
+  return map[p] || p;
+}
+
+function renderBizCard(b, compact=false) {
+  const saved = savedBizzes.has(b.id);
+  return `
+  <article class="biz-card" role="listitem" tabindex="0" aria-label="${b.name}" style="--signal:${b.signal}; ${b.isPremium?'':''}" onclick="viewBiz(${b.id})">
+    ${b.isPremium?`<div class="premium-badge">Premium</div>`:''}
+    <div class="biz-thumb" style="min-height:${compact?'130px':'160px'}">
+      <div class="biz-thumb-bg" style="background:${b.bg}">${b.emoji}</div>
+      <div class="biz-thumb-ov"></div>
+      <div class="biz-logo" style="background:${b.logoBg}">${b.logoEmoji}</div>
+      <button class="biz-save ${saved?'saved':''}" onclick="event.stopPropagation();toggleSave(${b.id},this)" aria-label="Save">${saved?'♥':'♡'}</button>
+      <div class="biz-open-badge ${b.isOpen?'open':'closed'}">
+        <div class="biz-od"></div>${b.isOpen?'Open':'Closed'}
+      </div>
+    </div>
+    <div class="biz-body">
+      <div class="biz-top-row">
+        <div class="biz-name">${b.name}</div>
+        ${b.isVerified?`<div class="verified-badge">✓ Verified</div>`:''}
+      </div>
+      <div class="biz-cat"><div class="biz-cat-dot" style="background:${b.signal}"></div>${b.category}</div>
+      <div class="biz-rating">
+        <span class="biz-stars">${starStr(b.rating)}</span>
+        <span class="biz-rating-num">${b.rating}</span>
+        <span class="biz-review-count">(${b.reviews.toLocaleString()} reviews)</span>
+      </div>
+      <div class="biz-loc">📍 ${b.suburb}, ${b.city}</div>
+      ${!compact?`<p class="biz-excerpt">${b.desc}</p>`:''}
+      <div style="display:flex;align-items:center;gap:8px;margin-top:2px">
+        <span class="biz-price">${b.price} · ${priceLabel(b.price)}</span>
+        ${b.tags.slice(0,2).map(t=>`<span style="font-size:10.5px;padding:2px 7px;border-radius:4px;background:var(--aubergine-s);color:var(--aubergine);font-weight:600">${t}</span>`).join('')}
+      </div>
+      <div class="biz-footer">
+        <button class="btn-view" onclick="event.stopPropagation();viewBiz(${b.id})">View</button>
+        ${b.hasWa?`<button class="btn-wa" onclick="event.stopPropagation();whatsAppClick('${b.name}')">💬 WhatsApp</button>`:''}
+        <button class="btn-quote" onclick="event.stopPropagation();openModal('quoteModal')">📋 Quote</button>
+      </div>
+    </div>
+  </article>`;
+}
+
+function renderAll() {
+  // Categories
+  document.getElementById('cat-grid').innerHTML = categories.map(c => `
+    <div class="cat-card" role="listitem" tabindex="0" aria-label="${c.name}" onclick="filterByCat('${c.name}')">
+      <div class="cat-bg" style="background:${c.bg}">${c.emoji}</div>
+      <div class="cat-ov"></div>
+      <div class="cat-body">
+        <div class="cat-name">${c.name}</div>
+        <div class="cat-count">${c.count} businesses</div>
+      </div>
+    </div>`).join('');
+
+  // First cat subs
+  renderSubCats(0);
+
+  // Locations
+  document.getElementById('location-grid').innerHTML = locations.map(l => `
+    <div class="loc-card ${l.featured?'featured':''}" role="listitem" tabindex="0" aria-label="${l.name} — ${l.count} businesses">
+      <div class="loc-icon">${l.emoji}</div>
+      <div class="loc-name">${l.name}</div>
+      <div class="loc-count">${l.count} businesses</div>
+    </div>`).join('');
+
+  // Featured businesses grid
+  renderBizGrid();
+
+  // Trending (subset)
+  const trending = businesses.filter(b=>b.isTrending).slice(0,4);
+  document.getElementById('trending-grid').innerHTML = trending.map(b=>renderBizCard(b,true)).join('');
+
+  // Deals
+  document.getElementById('deals-grid').innerHTML = deals.map(d => {
+    let timeLeft = d.timer;
+    return `
+    <div class="deal-card" role="listitem" tabindex="0" aria-label="${d.title}">
+      <div class="dc-bg" style="background:${d.bg}">${d.emoji}</div>
+      <div class="dc-ov"></div>
+      <div class="dc-discount">${d.discount}</div>
+      <div class="dc-timer" id="timer-${d.biz.replace(/\s/g,'')}">⏱ ${timeLeft}</div>
+      <div class="dc-body">
+        <div class="dc-biz">${d.biz}</div>
+        <div class="dc-title">${d.title}</div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Map
+  renderMapBizList();
+  renderMapPins();
+
+  // Testimonials
+  document.getElementById('testi-grid').innerHTML = testimonials.map(t=>`
+    <div class="testi-card" role="listitem">
+      <div class="testi-stars">${t.stars}</div>
+      <p class="testi-quote">${t.quote}</p>
+      <div class="testi-author">
+        <div class="testi-av" style="background:${t.avBg}">${t.av}</div>
+        <div>
+          <div class="testi-name">${t.name}</div>
+          <div class="testi-role">${t.role}</div>
+        </div>
+      </div>
+    </div>`).join('');
+
+  // Hero business previews
+  document.getElementById('hero-biz-preview').innerHTML = heroPreviewBizzes.map(b=>`
+    <div class="hbp-card">
+      <div class="hbp-logo" style="background:${b.bg}">${b.emoji}</div>
+      <div class="hbp-info">
+        <div class="hbp-name">${b.name}</div>
+        <div class="hbp-meta">
+          <span class="hbp-rating">${b.meta.split('★')[0]}★</span>
+          <span>·</span>
+          ${b.isOpen?`<div class="hbp-open"><div class="hbp-open-dot"></div>Open Now</div>`:'<span style="color:#FF6B81;font-weight:600;font-size:11px">Closed</span>'}
+        </div>
+      </div>
+      <div class="hbp-wa">💬</div>
+    </div>`).join('');
+}
+
+function renderSubCats(catIndex) {
+  const subs = categories[catIndex].sub;
+  document.getElementById('cat-sub-row').innerHTML =
+    ['All',...subs].map((s,i)=>`
+      <button class="cat-sub ${i===0?'active':''}" onclick="selectSubCat(this)">${s}</button>
+    `).join('');
+}
+
+function renderBizGrid() {
+  let filtered = businesses;
+  const barSearch = document.getElementById('bar-search')?.value.toLowerCase() || '';
+  if (barSearch) filtered = filtered.filter(b=>b.name.toLowerCase().includes(barSearch)||b.category.toLowerCase().includes(barSearch)||b.city.toLowerCase().includes(barSearch));
+  if (activeFilters.has('open')) filtered = filtered.filter(b=>b.isOpen);
+  if (activeFilters.has('verified')) filtered = filtered.filter(b=>b.isVerified);
+  if (activeFilters.has('wa')) filtered = filtered.filter(b=>b.hasWa);
+  if (activeFilters.has('deals')) filtered = filtered.filter(b=>b.hasDeals);
+  if (activeFilters.has('top')) filtered = filtered.filter(b=>b.isTop);
+  const visible = filtered.slice(0, visibleBizCount);
+  document.getElementById('biz-grid').innerHTML = visible.length
+    ? visible.map(b=>renderBizCard(b)).join('')
+    : `<div style="grid-column:1/-1;text-align:center;padding:60px 20px">
+        <div style="font-size:48px;margin-bottom:16px">🔍</div>
+        <div style="font-family:var(--fn-d);font-size:20px;font-weight:800;color:var(--ink);margin-bottom:8px">No businesses found</div>
+        <div style="color:var(--ink-muted);margin-bottom:20px">Try adjusting your filters or search term</div>
+        <button onclick="clearFilters()" style="padding:10px 24px;border-radius:8px;background:var(--aubergine);color:#fff;font-family:var(--fn-d);font-weight:700">Clear Filters</button>
+      </div>`;
+  document.getElementById('biz-shown-count').textContent = `${Math.min(visible.length, filtered.length)} businesses`;
+}
+
+function renderMapBizList() {
+  document.getElementById('map-biz-list').innerHTML = mapBizItems.map((m,i)=>`
+    <div class="mbl-item ${i===0?'active':''}" role="listitem" onclick="selectMapBiz(this,${i})">
+      <div class="mbl-num">${m.num}</div>
+      <div class="mbl-info">
+        <div class="mbl-name">${m.name}</div>
+        <div class="mbl-meta">${m.meta}</div>
+      </div>
+      <div class="mbl-rating">★ ${m.rating}</div>
+    </div>`).join('');
+}
+
+function renderMapPins() {
+  document.getElementById('map-pins').innerHTML = mapBizItems.map((m,i)=>`
+    <div class="map-pin" style="left:${m.pin.left};top:${m.pin.top}" onclick="selectMapBiz(null,${i})" aria-label="${m.name}">
+      <div style="position:relative">
+        <div class="pin-pulse" style="${m.pinType==='emerald'?'border-color:var(--emerald)':m.pinType==='amber'?'border-color:var(--amber)':''}"></div>
+        <div class="pin-head ${m.pinType}">
+          <span class="pin-emoji">${['🔧','🍽️','🏥','🎊','📸'][i]}</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+/* ═══════════════════════════════════════════════════
+   INTERACTIONS
+═══════════════════════════════════════════════════ */
+function doSearch() {
+  const q = document.getElementById('main-search').value;
+  const loc = document.getElementById('location-search').value;
+  if (!q && !loc) { showToast('💡 Enter a business type or location to search'); return; }
+  showToast(`🔍 Searching for "${q||'businesses'}" in "${loc||'Zimbabwe'}"…`);
+  document.getElementById('bar-search').value = q;
+  filterBusinesses();
+  document.querySelector('#categories')?.scrollIntoView({behavior:'smooth'});
+}
+function quickSearch(term) {
+  document.getElementById('main-search').value = term;
+  document.getElementById('bar-search').value = term;
+  doSearch();
+}
+function filterBusinesses() {
+  renderBizGrid();
+}
+function toggleFilter(btn, key) {
+  if (activeFilters.has(key)) {
+    activeFilters.delete(key);
+    btn.classList.remove('active');
+    if(key==='open') btn.classList.remove('emerald');
+  } else {
+    activeFilters.add(key);
+    btn.classList.add('active');
+    if(key==='open') btn.classList.add('emerald');
+  }
+  renderBizGrid();
+}
+function clearFilters() {
+  activeFilters.clear();
+  document.querySelectorAll('.fc.active').forEach(b=>{b.classList.remove('active','emerald')});
+  renderBizGrid();
+}
+function sortBusinesses(method) {
+  if (method==='rating') businesses.sort((a,b)=>b.rating-a.rating);
+  else if (method==='reviews') businesses.sort((a,b)=>b.reviews-a.reviews);
+  else if (method==='new') businesses.sort((a,b)=>b.isNew-a.isNew);
+  else businesses.sort((a,b)=>b.isPremium-a.isPremium);
+  renderBizGrid();
+}
+function loadMore() {
+  visibleBizCount += 3;
+  renderBizGrid();
+}
+function selectIntent(btn, type) {
+  document.querySelectorAll('.intent-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const map = {service:'Electrician',shop:'Shopping',eat:'Restaurant',stay:'Hotel',pro:'Lawyer'};
+  document.getElementById('main-search').value = map[type]||'';
+  showToast(`Showing ${btn.textContent.trim()} results`);
+}
+function filterByCat(cat) {
+  const idx = categories.findIndex(c=>c.name===cat);
+  if(idx>-1) renderSubCats(idx);
+  document.getElementById('bar-search').value = cat;
+  renderBizGrid();
+  document.getElementById('biz-grid')?.closest('section')?.scrollIntoView({behavior:'smooth'});
+  showToast(`Browsing ${cat}`);
+}
+function selectSubCat(btn) {
+  document.querySelectorAll('.cat-sub').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  if (btn.textContent!=='All') {
+    document.getElementById('bar-search').value = btn.textContent;
+    renderBizGrid();
+  }
+}
+function selectMapBiz(el, idx) {
+  document.querySelectorAll('.mbl-item').forEach((b,i)=>b.classList.toggle('active',i===idx));
+  showToast(`📍 ${mapBizItems[idx].name}`);
+}
+function toggleSave(id, btn) {
+  if (savedBizzes.has(id)) {
+    savedBizzes.delete(id);
+    btn.textContent = '♡';
+    btn.classList.remove('saved');
+    showToast('Removed from saved businesses');
+  } else {
+    savedBizzes.add(id);
+    btn.textContent = '♥';
+    btn.classList.add('saved');
+    showToast('💾 Saved to your businesses');
+  }
+}
+function viewBiz(id) {
+  const b = businesses.find(x=>x.id===id);
+  if(b) showToast(`Viewing ${b.name}…`);
+}
+function whatsAppClick(name) {
+  showToast(`💬 Opening WhatsApp for ${name}…`);
+}
+function switchView(view, btn) {
+  document.querySelectorAll('.vt-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  showToast(view==='map'?'🗺️ Map view — scroll down to explore':'☰ Showing list view');
+  if(view==='map') document.querySelector('.map-section')?.scrollIntoView({behavior:'smooth'});
+}
+
+/* Smart search */
+function setSmartEx(el) {
+  document.getElementById('smart-input').value = el.textContent;
+  doSmartSearch();
+}
+function doSmartSearch() {
+  const q = document.getElementById('smart-input').value.toLowerCase();
+  if (!q) return;
+  const results = businesses.filter(b=>
+    b.name.toLowerCase().includes(q.split(' ').filter(w=>w.length>3).join(' '))
+    || b.category.toLowerCase().includes(q)
+    || b.desc.toLowerCase().includes(q.split(' ').filter(w=>w.length>4)[0]||q)
+  ).slice(0,3);
+  const show = results.length ? results : businesses.slice(0,3);
+  const el = document.getElementById('smart-results');
+  el.innerHTML = show.map(b=>renderBizCard(b,true)).join('');
+  el.classList.add('visible');
+  showToast(`✨ Smart Search found ${show.length} businesses`);
+}
+
+/* Modals */
+function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+document.querySelectorAll('.modal-overlay').forEach(m=>{
+  m.addEventListener('click',e=>{ if(e.target===m) closeModal(m.id); });
+});
+function submitQuote() {
+  closeModal('quoteModal');
+  showToast('🚀 Quote request sent! Businesses will respond within 2 hours.');
+}
+function submitBooking() {
+  closeModal('bookingModal');
+  showToast('✅ Booking confirmed! Check your WhatsApp for details.');
+}
+function submitListBiz() {
+  closeModal('listModal');
+  showToast('🎉 Your listing is live! Welcome to ZimBiz.');
+}
+
+/* Toast */
+function showToast(msg, dur=3000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), dur);
+}
+
+/* Animated counters */
+function animateCount(id, target, suffix='', prefix='') {
+  const el = document.getElementById(id);
+  if(!el) return;
+  let cur = 0;
+  const step = Math.ceil(target/50);
+  const iv = setInterval(()=>{
+    cur = Math.min(cur+step, target);
+    el.textContent = prefix + cur.toLocaleString() + suffix;
+    if(cur>=target) clearInterval(iv);
+  }, 25);
+}
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      animateCount('stat-biz',12400,'+');
+      animateCount('stat-cat',48,'');
+      animateCount('stat-cities',14,'');
+      obs.disconnect();
+    }
+  });
+},{threshold:.5});
+const heroEl = document.querySelector('.hero-stats');
+if(heroEl) obs.observe(heroEl);
+
+/* Mobile nav */
+document.getElementById('mobileToggle')?.addEventListener('click',()=>{
+  const links = document.querySelector('.nav-links');
+  const showing = links.style.display==='flex';
+  links.style.display = showing ? '' : 'flex';
+  links.style.flexDirection = 'column';
+  links.style.position = 'absolute';
+  links.style.top = '66px';
+  links.style.left = '0';
+  links.style.right = '0';
+  links.style.background = '#fff';
+  links.style.padding = '12px 0';
+  links.style.borderBottom = '1px solid var(--border-2)';
+  links.style.boxShadow = 'var(--shadow-m)';
+  if(showing) links.style.display='none';
+});
+
+/* Keyboard: close modals with Escape */
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape') document.querySelectorAll('.modal-overlay.open').forEach(m=>closeModal(m.id));
+});
+
+/* Init */
+renderAll();
+</script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+ 
+  crossorigin=""></script>
+<script src="/app.js"></script>
+
+</body>
+</html>
